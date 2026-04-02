@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MainProject.LoginPage"
+             Title="LoginPage"
+             xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+             x:DataType="viewmodels:MainViewModel"
+             Shell.NavBarIsVisible="True">
+
+
+    <Grid RowDefinitions=".3*, .7*">
+        <Image Aspect="AspectFill" Source="food.jpg"/>
+        <Grid BackgroundColor="#1C398E" Opacity=".8"/>
+
+        <Grid Grid.Row="1">
+            <RoundRectangle Margin="-5, -40, -5, -2"
+                            CornerRadius="30,30,0,0"
+                            Fill="White"/>
+            <VerticalStackLayout Margin="30, 0, 30, 0" Grid.Row="0">
+                <Label Text="CHAO MUNG DEN VOI UNG DUNG"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+
+                <Label Text="Vui long dang nhap!" 
+                       Margin="0, 10, 0, 0"
+                       FontSize="Small"
+                       TextColor="#A3A3A4"/>
+
+                <Entry Placeholder="Ten dang nhap"
+                       Margin="0, 10, 0, 0"
+                       TextColor="Black"/>
+
+                <Entry Placeholder="Mat khau"
+                       Margin="0, 10, 0, 0"
+                       TextColor="Black"/>
+
+                <Button Text="Dang Nhap"
+                        Margin="80, 20, 80, 0"
+                        CornerRadius="20"
+                        BackgroundColor="#193CB8"
+                        TextColor="White"/>
+
+                <Button Text="Dang Ky" 
+                        Margin="80, 20, 80, 0"
+                        CornerRadius="20"
+                        BackgroundColor="#DBEAFE"
+                        TextColor="#193CB8"/>
+
+                <Label Text="Ban quen mat khau?"
+                       TextDecorations="Underline"
+                       HorizontalOptions="Center"
+                       Margin="0, 20, 0, 0"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

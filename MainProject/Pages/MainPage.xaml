@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MainProject.MainPage"
+             xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+             x:DataType="viewmodels:MainViewModel"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions=".1*, .9*">
+        <Grid Grid.Row="0" ColumnDefinitions="*, 290" BackgroundColor="CornflowerBlue">
+            <Label Text="Welcome!" VerticalOptions="Center" HorizontalOptions="Center"/>
+                   
+            <StackLayout Orientation="Horizontal" Grid.Column="1" VerticalOptions="Center">
+                <Button Text="Dang Nhap"
+                        Command="{Binding NavigateCommand}"
+                        Margin="70,20,10,20"
+                        CornerRadius="20"
+                        BackgroundColor="#193CB8"
+                        TextColor="White"/>
+
+                <Button Text="Dang Ky"
+                        Margin="0, 20, 0, 20"
+                        CornerRadius="20"
+                        BackgroundColor="#DBEAFE"
+                        TextColor="#193CB8"/>
+            </StackLayout>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <ScrollView BackgroundColor="Brown">
+                
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>
