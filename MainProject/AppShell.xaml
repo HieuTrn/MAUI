@@ -20,8 +20,8 @@
 
         <Tab Title="Page 1">
             <ShellContent Title="Page 1"
-                          ContentTemplate="{DataTemplate local:LoginPage}"
-                          Route="LoginPage"/>
+                          ContentTemplate="{DataTemplate local:MainPage}"
+                          Route="MainPage"/>
         </Tab>
 
         <Tab Title="Thong Ke">

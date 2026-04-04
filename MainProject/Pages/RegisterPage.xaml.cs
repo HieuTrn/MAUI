@@ -2,13 +2,12 @@ using MainProject.ViewModels;
 
 namespace MainProject.Pages;
 
-public partial class LoginPage : ContentPage
+public partial class RegisterPage : ContentPage
 {
-    
-    public LoginPage(LoginViewModel vm) 
-    {
-        
+	public RegisterPage(RegisterViewModel vm)
+	{
+
         InitializeComponent();
         BindingContext = vm;
-    }
+	}
 }

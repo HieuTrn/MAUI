@@ -23,4 +23,11 @@ namespace MainProject.ViewModels;
 
     [RelayCommand]
     Task Nagivate() => Shell.Current.GoToAsync(nameof(ThongKePage));
+    
+    [RelayCommand]
+    async Task Logout()
+    {
+        // chưa có ý tưởng....
+
+    }
 }

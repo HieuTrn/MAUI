@@ -11,16 +11,10 @@
             <Label Text="Welcome!" VerticalOptions="Center" HorizontalOptions="Center"/>
 
             <StackLayout Orientation="Horizontal" Grid.Column="1" VerticalOptions="Center">
-                <Button Text="Dang Nhap"
-                        Command="{Binding NavigateCommand}"
-                        Margin="70,20,10,20"
-                        CornerRadius="20"
-                        BackgroundColor="#193CB8"
-                        TextColor="White"/>
-
-                <Button Text="Dang Ky"
+                <Button Text="Dang Xuat"
                         Margin="0, 20, 0, 20"
-                        CornerRadius="20"
+                        CornerRadius="40"
+                        Command="{Binding LogoutCommand}"
                         BackgroundColor="#DBEAFE"
                         TextColor="#193CB8"/>
             </StackLayout>
