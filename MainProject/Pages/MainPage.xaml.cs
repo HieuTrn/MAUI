@@ -1,6 +1,6 @@
 ﻿using MainProject.ViewModels;
 
-namespace MainProject;
+namespace MainProject.Pages;
 
 public partial class MainPage : ContentPage
 {

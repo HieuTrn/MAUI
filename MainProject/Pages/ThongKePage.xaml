@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MainProject.Pages.ThongKePage"
+             Title="ThongKePage"
+             xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+             x:DataType="viewmodels:MainViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#D6D3D1">
+
+    <Grid HorizontalOptions="Center"
+          RowDefinitions="70, 50, 200, 150, *"
+          RowSpacing="5"
+          Padding="10">
+
+        <Grid ColumnDefinitions="*, *" 
+              ColumnSpacing="5"
+              HorizontalOptions="Center">
+            
+            <Border
+                Stroke="#38D5BE"
+                Grid.Column="0"
+                BackgroundColor="#38D5BE"
+                Padding="60,15"
+                HeightRequest="70"
+                HorizontalOptions="Start">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="25" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout>
+                    <Label Text="Thu Nhập" HorizontalOptions="Center" FontSize="Header" TextColor="White"/>
+                    <Label Text="12.000.000" HorizontalOptions="Center" TextColor="White"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border
+                Stroke="#FF6467"
+                Grid.Column="1"
+                BackgroundColor="#FF6467"
+                Padding="60,15"
+                HeightRequest="70"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="25" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout>
+                    <Label Text="Chi Tiêu" HorizontalOptions="Center" TextColor="White"/>
+                    <Label Text="12.000.000" HorizontalOptions="Center" TextColor="White"/>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <Border
+            Stroke="#F4F4F5"
+            Grid.Row="1"
+            BackgroundColor="#F4F4F5"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="25" />
+            </Border.StrokeShape>
+        </Border>
+        
+        <Border 
+            Stroke="#F4F4F5"
+            Grid.Row="2"
+            BackgroundColor="#F4F4F5"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="25" />
+            </Border.StrokeShape>
+
+            <Label Text="Chi tiêu theo hạng mục"
+                   Padding="10"
+                   FontSize="Header"
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+        </Border>
+
+        <Border Stroke="#F4F4F5"
+                Grid.Row="3"
+                BackgroundColor="#F4F4F5"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="25" />
+            </Border.StrokeShape>
+
+            <Label Text="Chi tiêu theo thời gian"
+                   Padding="10"
+                   FontSize="Header"
+                   FontAttributes="Bold"
+                   TextColor="Black"/>
+        </Border>
+
+        <Grid Grid.Row="4" RowDefinitions="50, *">
+            <Border Stroke="#F4F4F5"
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="#F4F4F5"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="25" />
+                </Border.StrokeShape>
+
+                <Grid ColumnDefinitions="*, *">
+                    <Label Text="Hạng mục" HorizontalOptions="Start" Padding="10" FontSize="Header" FontAttributes="Bold" TextColor="Black"/>
+                    <Label Text="Số tiền chi tiêu" HorizontalOptions="End" Grid.Column="1" Padding="10" FontSize="Header" FontAttributes="Bold" TextColor="Black"/>
+                </Grid>
+
+            </Border>
+
+            <CollectionView ItemsSource="{Binding ThuocTinhs}"
+                            Grid.Row="5"
+                            Grid.ColumnSpan="2"
+                            SelectionMode="None">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodels:MainViewModel">
+                        <Border Stroke="#E2E8F0"
+                                BackgroundColor="#E2E8F0"
+                                Padding="20"
+                                Margin="10,13">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="15" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding ThuocTinh}"
+                                       HorizontalOptions="Start"
+                                       FontSize="Header" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding NoiDung}"
+                                       HorizontalOptions="Start"
+                                       FontSize="Header" FontAttributes="Bold" TextColor="Black"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -3,7 +3,7 @@
     x:Class="MainProject.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MainProject"
+    xmlns:local="clr-namespace:MainProject.Pages"
     Shell.FlyoutBehavior="Disabled"
     
     Shell.TabBarBackgroundColor="#193CB8"
@@ -24,10 +24,10 @@
                           Route="LoginPage"/>
         </Tab>
 
-        <Tab Title="Page 2">
-            <ShellContent Title="Page Phu"
-                          ContentTemplate="{DataTemplate local:MainPage}"
-                          Route="MainPage"/>
+        <Tab Title="Thong Ke">
+            <ShellContent Title="Thong Ke"
+                          ContentTemplate="{DataTemplate local:ThongKePage}"
+                          Route="ThongKePage"/>
         </Tab>
     </TabBar>
 </Shell>

@@ -1,4 +1,5 @@
-﻿using MainProject.ViewModels;
+﻿using MainProject.Pages;
+using MainProject.ViewModels;
 
 namespace MainProject;
 
@@ -19,6 +20,7 @@ namespace MainProject;
             builder.Services.AddSingleton<MainViewModel>();
 
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<ThongKePage>();
 
             return builder.Build();
         }

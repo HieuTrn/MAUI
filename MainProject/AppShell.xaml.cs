@@ -1,11 +1,13 @@
-﻿namespace MainProject
+﻿using MainProject.Pages;
+
+namespace MainProject;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-        }
+        InitializeComponent();
+        Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+        Routing.RegisterRoute(nameof(ThongKePage), typeof(ThongKePage));
     }
 }
