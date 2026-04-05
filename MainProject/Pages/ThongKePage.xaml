@@ -8,145 +8,133 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="#D6D3D1">
 
-    <Grid HorizontalOptions="Center"
-          RowDefinitions="70, 50, 200, 150, *"
-          RowSpacing="5"
-          Padding="10">
+    <ScrollView>
+        <Grid RowDefinitions="Auto, 50, 200, 150, *" RowSpacing="15" Padding="15">
 
-        <Grid ColumnDefinitions="*, *" 
-              ColumnSpacing="5"
-              HorizontalOptions="Center">
-            
-            <Border
-                Stroke="#38D5BE"
-                Grid.Column="0"
-                BackgroundColor="#38D5BE"
-                Padding="60,15"
-                HeightRequest="70"
-                HorizontalOptions="Start">
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
 
+                <Border Stroke="#38D5BE" Grid.Column="0" BackgroundColor="#38D5BE" HeightRequest="80">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label 
+                        Text="Thu Nhập" FontSize="16" 
+                        TextColor="White" 
+                        HorizontalOptions="Center"/>
+
+                        <Label 
+                        Text="12.000.000" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        TextColor="White" 
+                        HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Stroke="#FF6467" Grid.Column="1" BackgroundColor="#FF6467" HeightRequest="80">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label
+                        Text="Chi Tiêu" 
+                        FontSize="16" 
+                        TextColor="White" 
+                        HorizontalOptions="Center"/>
+
+                        <Label 
+                        Text="12.000.000" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        TextColor="White" 
+                        HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Border Grid.Row="1" Stroke="#F4F4F5" BackgroundColor="#F4F4F5">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="25" />
+                    <RoundRectangle CornerRadius="20"/>
                 </Border.StrokeShape>
-
-                <VerticalStackLayout>
-                    <Label Text="Thu Nhập" HorizontalOptions="Center" FontSize="Header" TextColor="White"/>
-                    <Label Text="12.000.000" HorizontalOptions="Center" TextColor="White"/>
-                </VerticalStackLayout>
             </Border>
 
-            <Border
-                Stroke="#FF6467"
-                Grid.Column="1"
-                BackgroundColor="#FF6467"
-                Padding="60,15"
-                HeightRequest="70"
-                HorizontalOptions="End"
-                VerticalOptions="Center">
-
+            <Border Grid.Row="2" Stroke="#F4F4F5" BackgroundColor="#F4F4F5">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="25" />
+                    <RoundRectangle CornerRadius="20" />
                 </Border.StrokeShape>
 
-                <VerticalStackLayout>
-                    <Label Text="Chi Tiêu" HorizontalOptions="Center" TextColor="White"/>
-                    <Label Text="12.000.000" HorizontalOptions="Center" TextColor="White"/>
-                </VerticalStackLayout>
+                <Label 
+                Text="Chi tiêu theo hạng mục"
+                Padding="15"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="Black"/>
             </Border>
-        </Grid>
 
-        <Border
+            <Border 
+            Grid.Row="3"
             Stroke="#F4F4F5"
-            Grid.Row="1"
-            BackgroundColor="#F4F4F5"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill">
-
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="25" />
-            </Border.StrokeShape>
-        </Border>
-        
-        <Border 
-            Stroke="#F4F4F5"
-            Grid.Row="2"
-            BackgroundColor="#F4F4F5"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill">
-
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="25" />
-            </Border.StrokeShape>
-
-            <Label Text="Chi tiêu theo hạng mục"
-                   Padding="10"
-                   FontSize="Header"
-                   FontAttributes="Bold"
-                   TextColor="Black"/>
-        </Border>
-
-        <Border Stroke="#F4F4F5"
-                Grid.Row="3"
-                BackgroundColor="#F4F4F5"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill">
-
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="25" />
-            </Border.StrokeShape>
-
-            <Label Text="Chi tiêu theo thời gian"
-                   Padding="10"
-                   FontSize="Header"
-                   FontAttributes="Bold"
-                   TextColor="Black"/>
-        </Border>
-
-        <Grid Grid.Row="4" RowDefinitions="50, *">
-            <Border Stroke="#F4F4F5"
-                    Grid.RowSpan="2"
-                    Grid.ColumnSpan="2"
-                    BackgroundColor="#F4F4F5"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Fill">
-
+            BackgroundColor="#F4F4F5">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="25" />
+                    <RoundRectangle CornerRadius="20" />
                 </Border.StrokeShape>
 
-                <Grid ColumnDefinitions="*, *">
-                    <Label Text="Hạng mục" HorizontalOptions="Start" Padding="10" FontSize="Header" FontAttributes="Bold" TextColor="Black"/>
-                    <Label Text="Số tiền chi tiêu" HorizontalOptions="End" Grid.Column="1" Padding="10" FontSize="Header" FontAttributes="Bold" TextColor="Black"/>
+                <Label 
+                Text="Chi tiêu theo thời gian"
+                Padding="15"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="Black"/>
+            </Border>
+
+            <Border Grid.Row="4" Stroke="#F4F4F5" BackgroundColor="#F4F4F5">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <Grid RowDefinitions="Auto, *" Padding="15">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label 
+                        Text="Hạng mục" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        TextColor="Black" 
+                        VerticalOptions="Center"/>
+
+                        <Label 
+                        Text="Số tiền chi tiêu" 
+                        Grid.Column="1" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        TextColor="Black" 
+                        VerticalOptions="Center"/>
+                    </Grid>
+
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding ThongKeItems}" EmptyView="Khong co du lieu">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="viewmodels:ThongKeViewModel">
+                                <Grid ColumnDefinitions="*, Auto" Padding="10">
+                                    <Label 
+                                    Text="{Binding Id}" 
+                                    FontSize="16" 
+                                    TextColor="Black" 
+                                    VerticalOptions="Center"/>
+                                    <Label 
+                                    Text="{Binding AmountSpent, StringFormat='{}{0:C}'}" 
+                                    Grid.Column="1" 
+                                    FontSize="16" 
+                                    TextColor="Black" 
+                                    VerticalOptions="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Grid>
-
             </Border>
-
-            <CollectionView ItemsSource="{Binding ThuocTinhs}"
-                            Grid.Row="5"
-                            Grid.ColumnSpan="2"
-                            SelectionMode="None">
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="viewmodels:MainViewModel">
-                        <Border Stroke="#E2E8F0"
-                                BackgroundColor="#E2E8F0"
-                                Padding="20"
-                                Margin="10,13">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="15" />
-                            </Border.StrokeShape>
-                            <VerticalStackLayout>
-                                <Label Text="{Binding ThuocTinh}"
-                                       HorizontalOptions="Start"
-                                       FontSize="Header" FontAttributes="Bold" TextColor="Black"/>
-                                <Label Text="{Binding NoiDung}"
-                                       HorizontalOptions="Start"
-                                       FontSize="Header" FontAttributes="Bold" TextColor="Black"/>
-                            </VerticalStackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
         </Grid>
-    </Grid>
+    </ScrollView>
+    
 </ContentPage>
