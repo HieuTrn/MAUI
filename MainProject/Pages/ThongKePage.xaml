@@ -4,6 +4,7 @@
              x:Class="MainProject.Pages.ThongKePage"
              Title="ThongKePage"
              xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+             xmlns:database="clr-namespace:MainProject.Database"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              x:DataType="viewmodels:MainViewModel"
              Shell.NavBarIsVisible="False"
@@ -129,28 +130,15 @@
                         VerticalOptions="Center"/>
                     </Grid>
 
-                    <CollectionView Grid.Row="1" ItemsSource="{Binding ThongKeItems}" EmptyView="Khong co du lieu">
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding DanhMuc}" EmptyView="Khong co du lieu">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Grid ColumnDefinitions="*, Auto" Padding="10">
-                            <DataTemplate x:DataType="models:danhmuc">
                                 <StackLayout Padding="10, 6" Orientation="Horizontal">
-                                    <Label 
-                                    FontSize="16" 
-                                    TextColor="Black" 
-                                    VerticalOptions="Center"/>
-                                    <Label 
-                                    Grid.Column="1" 
-                                    FontSize="16" 
-                                    TextColor="Black" 
-                                    VerticalOptions="Center"/>
-                                </Grid>
-                                        Text="{Binding Id}"
+                                    <Label
                                         FontSize="16" 
                                         TextColor="Black" 
                                         VerticalOptions="Center"/>
                                     <Label
-                                        Text="{Binding TenDanhMuc}"
                                         Grid.Column="1" 
                                         FontSize="16" 
                                         TextColor="Black" 
