@@ -8,5 +8,6 @@ public partial class ThongKePage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = vm;
+		BindingContext = new ChartViewModel();
     }
 }

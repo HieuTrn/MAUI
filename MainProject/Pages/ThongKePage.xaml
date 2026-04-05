@@ -4,6 +4,7 @@
              x:Class="MainProject.Pages.ThongKePage"
              Title="ThongKePage"
              xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              x:DataType="viewmodels:MainViewModel"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#D6D3D1">
@@ -59,6 +60,7 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="20"/>
                 </Border.StrokeShape>
+                
             </Border>
 
             <Border Grid.Row="2" Stroke="#F4F4F5" BackgroundColor="#F4F4F5">
@@ -66,12 +68,26 @@
                     <RoundRectangle CornerRadius="20" />
                 </Border.StrokeShape>
 
-                <Label 
-                Text="Chi tiêu theo hạng mục"
-                Padding="15"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="Black"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label 
+                        Padding="10"
+                        Text="Thống Kê Chi Tiêu"
+               FontAttributes="Bold"
+               Grid.Row="0"
+               Margin="0,0,0,10"/>
+
+                    <lvc:PieChart 
+            Series="{Binding Bieudo}"
+            Grid.Row="1"
+            HorizontalOptions="Fill"   VerticalOptions="Fill"     LegendPosition="Right"   BackgroundColor="#F8F9FA"/>
+
+                </Grid>
             </Border>
 
             <Border 
