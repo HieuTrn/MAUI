@@ -115,15 +115,13 @@
 
                     <CollectionView Grid.Row="1" ItemsSource="{Binding ThongKeItems}" EmptyView="Khong co du lieu">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="viewmodels:ThongKeViewModel">
+                            <DataTemplate>
                                 <Grid ColumnDefinitions="*, Auto" Padding="10">
                                     <Label 
-                                    Text="{Binding Id}" 
                                     FontSize="16" 
                                     TextColor="Black" 
                                     VerticalOptions="Center"/>
                                     <Label 
-                                    Text="{Binding AmountSpent, StringFormat='{}{0:C}'}" 
                                     Grid.Column="1" 
                                     FontSize="16" 
                                     TextColor="Black" 
