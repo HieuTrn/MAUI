@@ -35,28 +35,23 @@ namespace MainProject.Database
                     @"CREATE TABLE IF NOT EXISTS taikhoan (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user TEXT,
-                    password TEXT);
-
-                   CREATE TABLE IF NOT EXISTS vi (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    ten TEXT NOT NULL,
-                    sotien REAL NOT NULL,
-                    IDtk INTEGER,
-                    FOREIGN KEY (IDtk) REFERENCES taikhoan(Id));
-                   CREATE TABLE IF NOT EXISTS danhmuc (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ten TEXT NOT NULL,
-                        LoaiGD TEXT NOT NULL
+                    password TEXT,
+                    sotien REAL NOT NULL
 );
+CREATE TABLE IF NOT EXISTS danhmuc (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            ten TEXT NOT NULL,
+            LoaiGD TEXT NOT NULL
+        );
 CREATE TABLE IF NOT EXISTS giaodich (
     Id INTEGER PRIMARY KEY AUTOINCREMENT,
     sotien REAL NOT NULL,
     LoaiGD TEXT NOT NULL,
-    IDvi INTEGER,
+    IDtk INTEGER,
     IDdanhmuc INTEGER,
     ngay TEXT,
     ghichu TEXT,
-    FOREIGN KEY (IDvi) REFERENCES vi(Id),
+    FOREIGN KEY (IDtk) REFERENCES taikhoan(Id),
     FOREIGN KEY (IDdanhmuc) REFERENCES danhmuc(Id)
 );
 ";
@@ -72,23 +67,10 @@ CREATE TABLE IF NOT EXISTS giaodich (
                 connection.Open();
                 var truyvan = connection.CreateCommand();
                 truyvan.CommandText =
-                    @"INSERT INTO taikhoan(user, password) VALUES ($user , $password);";
+                    @"INSERT INTO taikhoan(user, password , sotien) VALUES ($user , $password, $sotien);";
                 truyvan.Parameters.AddWithValue("$user", user);
                 truyvan.Parameters.AddWithValue("$password", pass);
-                truyvan.ExecuteNonQuery();
-            }
-        }
-        public void themVi(string ten, double tien, int idtk)
-        {
-            using (var connection = new SqliteConnection(connect))
-            {
-                connection.Open();
-                var truyvan = connection.CreateCommand();
-                truyvan.CommandText =
-                    @"INSERT INTO vi(ten, sotien , IDtk) VALUES ($name , $stien , $id);";
-                truyvan.Parameters.AddWithValue("$name", ten);
-                truyvan.Parameters.AddWithValue("$stien", tien);
-                truyvan.Parameters.AddWithValue("$id", idtk);
+                truyvan.Parameters.AddWithValue("$sotien", 0);
                 truyvan.ExecuteNonQuery();
             }
         }
@@ -113,15 +95,15 @@ CREATE TABLE IF NOT EXISTS giaodich (
                 var truyvan = connection.CreateCommand();
 
                 truyvan.CommandText = @"
-            INSERT INTO giaodich (sotien, LoaiGD, IDvi, IDdanhmuc, ngay, ghichu) 
-            VALUES (@sotien, @loai, @idvi, @iddanhmuc, @ngay, @ghichu)";
+            INSERT INTO giaodich (sotien, LoaiGD, IDtk, IDdanhmuc, ngay, ghichu) 
+            VALUES ($sotien, $loai, $idtk, $iddanhmuc, $ngay, $ghichu)";
 
-                truyvan.Parameters.AddWithValue("@sotien", soTien);
-                truyvan.Parameters.AddWithValue("@loai", loaiGD);
-                truyvan.Parameters.AddWithValue("@idvi", idVi);
-                truyvan.Parameters.AddWithValue("@iddanhmuc", idDanhMuc);
-                truyvan.Parameters.AddWithValue("@ngay", ngayGD.ToString("s"));
-                truyvan.Parameters.AddWithValue("@ghichu", ghiChu);
+                truyvan.Parameters.AddWithValue("$sotien", soTien);
+                truyvan.Parameters.AddWithValue("$loai", loaiGD);
+                truyvan.Parameters.AddWithValue("$idtk", idVi);
+                truyvan.Parameters.AddWithValue("$iddanhmuc", idDanhMuc);
+                truyvan.Parameters.AddWithValue("$ngay", ngayGD.ToString("s"));
+                truyvan.Parameters.AddWithValue("$ghichu", ghiChu);
                 truyvan.ExecuteNonQuery();
             }
         }
@@ -132,7 +114,7 @@ CREATE TABLE IF NOT EXISTS giaodich (
                 connection.Open();
                 var ds = new ObservableCollection<taikhoan>();
                 var truyvan = connection.CreateCommand();
-                truyvan.CommandText = @"SELECT Id, user, password FROM taikhoan";
+                truyvan.CommandText = @"SELECT Id, user, password , sotien FROM taikhoan";
                 using (var doc = truyvan.ExecuteReader())
                 {
                     while (doc.Read())
@@ -141,32 +123,8 @@ CREATE TABLE IF NOT EXISTS giaodich (
                         {
                             Id = doc.GetInt32(0),
                             user = doc.GetString(1),
-                            password = doc.GetString(2)
-                        });
-                    }
-                }
-                return ds;
-            }
-        }
-        public ObservableCollection<vi> layVi(int idtk)
-        {
-            using (var connection = new SqliteConnection(connect))
-            {
-                connection.Open();
-                var ds = new ObservableCollection<vi>();
-                var truyvan = connection.CreateCommand();
-                truyvan.CommandText = @"SELECT Id, ten, sotien, IDtk FROM vi WHERE IDtk = $idtk";
-                truyvan.Parameters.AddWithValue("$idtk", idtk);
-                using (var doc = truyvan.ExecuteReader())
-                {
-                    while (doc.Read())
-                    {
-                        ds.Add(new vi
-                        {
-                            Id = doc.GetInt32(0),
-                            ten = doc.GetString(1),
-                            sotien = doc.GetDouble(2),
-                            IDtk = doc.GetInt32(3)
+                            password = doc.GetString(2),
+                            sotien = doc.GetDouble(3)
                         });
                     }
                 }
@@ -175,6 +133,7 @@ CREATE TABLE IF NOT EXISTS giaodich (
         }
 
         // chưa viết xong....
-        
+        //public ObservableCollection<danhmuc> layDanhmuc()
+
     }
 }
