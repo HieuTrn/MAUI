@@ -17,8 +17,8 @@
 
         <Tab Title="Page 1">
             <ShellContent Title="Page 1"
-                          ContentTemplate="{DataTemplate local:MainPage}"
-                          Route="MainPage"/>
+                          ContentTemplate="{DataTemplate local:GiaoDichPage}"
+                          Route="GiaoDichPage"/>
         </Tab>
 
         <Tab Title="Thong Ke">
