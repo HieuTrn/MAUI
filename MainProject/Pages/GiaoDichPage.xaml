@@ -82,12 +82,12 @@
                 <!-- NHÓM: 23 THÁNG 4 (trống) -->
                 <Label Text="23 tháng 4" FontSize="14" FontAttributes="Bold" TextColor="#64748B" Margin="4,4,0,0"/>
                 <Border BackgroundColor="White" StrokeThickness="0" Padding="14,20">
-                    <Border.StrokeShape><RoundRectangle CornerRadius="16"/></Border.StrokeShape>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="16"/>
+                    </Border.StrokeShape>
                     <Label Text="Chưa có giao dịch nào"
                            HorizontalOptions="Center" TextColor="#CBD5E1" FontSize="13"/>
                 </Border>
-
-                <BoxView HeightRequest="80" Color="Transparent"/>
             </VerticalStackLayout>
         </ScrollView>
 
