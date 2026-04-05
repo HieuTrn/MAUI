@@ -30,6 +30,7 @@ namespace MainProject.Models
         public string ten { get; set; }
         public string LoaiGD { get; set; } 
         //
+        //
     }
 }
 
