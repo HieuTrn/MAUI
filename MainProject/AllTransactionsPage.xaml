@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MainProject.AllTransactionsPage"
+             Title="Lịch Sử Giao Dịch Gần Đây">
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="10">
+            <Label Text="Tháng 4, 2026" 
+                   FontAttributes="Bold" 
+                   Margin="0,10"/>
+
+            <Border StrokeShape="RoundRectangle 15" 
+                    Padding="15" 
+                    BackgroundColor="White">
+                <Grid ColumnDefinitions="Auto, *, Auto" 
+                      ColumnSpacing="15">
+                    <Ellipse Fill="#F3E5F5" 
+                             WidthRequest="40" 
+                             HeightRequest="40"/>
+                    <Label Text="🛒" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" 
+                           FontSize="20"/>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Siêu thị Vinmart" 
+                               FontAttributes="Bold"/>
+                        <Label Text="Mua sắm" 
+                               FontSize="12" 
+                               TextColor="Gray"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" 
+                           Text="0 đ" 
+                           TextColor="Red" 
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 15" 
+                    Padding="15" 
+                    BackgroundColor="White">
+                <Grid ColumnDefinitions="Auto, *, Auto" 
+                      ColumnSpacing="15">
+                    <Ellipse Fill="#F3E5F5" 
+                             WidthRequest="40" 
+                             HeightRequest="40"/>
+                    <Label Text="📄" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" 
+                           FontSize="20"/>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Tiền dịch vụ" 
+                               FontAttributes="Bold"/>
+                        <Label Text="Hoá đơn" 
+                               FontSize="12" 
+                               TextColor="Gray"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" 
+                           Text="0 đ" 
+                           TextColor="Red" 
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 15" 
+                    Padding="15" 
+                    BackgroundColor="White">
+                <Grid ColumnDefinitions="Auto, *, Auto" 
+                      ColumnSpacing="15">
+                    <Ellipse Fill="#F3E5F5" 
+                             WidthRequest="40" 
+                             HeightRequest="40"/>
+                    <Label Text="🍜" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" 
+                           FontSize="20"/>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Ăn uống" 
+                               FontAttributes="Bold"/>
+                        <Label Text="Hoá đơn" 
+                               FontSize="12" 
+                               TextColor="Gray"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" 
+                           Text="0 đ" 
+                           TextColor="Red" 
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

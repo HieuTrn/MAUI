@@ -15,13 +15,16 @@
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"/>
         </Tab>
 
-        <!-- Tab Giao Dịch mới thêm -->
-        <Tab Title="Giao Dịch">
-            <ShellContent ContentTemplate="{DataTemplate local:GiaoDichPage}" Route="GiaoDichPage"/>
+        <Tab Title="Page 1">
+            <ShellContent Title="Page 1"
+                          ContentTemplate="{DataTemplate local:MainPage}"
+                          Route="MainPage"/>
         </Tab>
 
-        <Tab Title="Thống Kê">
-            <ShellContent ContentTemplate="{DataTemplate local:ThongKePage}" Route="ThongKePage"/>
+        <Tab Title="Thong Ke">
+            <ShellContent Title="Thong Ke"
+                          ContentTemplate="{DataTemplate local:ThongKePage}"
+                          Route="ThongKePage"/>
         </Tab>
     </TabBar>
 </Shell>
