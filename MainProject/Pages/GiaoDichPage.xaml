@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MainProject.Pages.GiaoDichPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#EEF0F5">
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="15,10" Spacing="12">
+
+                <!-- TIÊU ĐỀ -->
+                <Label Text="Giao Dịch"
+                       FontSize="20" FontAttributes="Bold"
+                       HorizontalOptions="Center" TextColor="#1E293B"
+                       Margin="0,5,0,0"/>
+
+                <!-- 2 THẺ: THU NHẬP / CHI TIÊU -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <Border Grid.Column="0" BackgroundColor="#38D5BE" StrokeThickness="0" Padding="14,12">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="16"/></Border.StrokeShape>
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="↑  Thu Nhập" TextColor="White" FontSize="13" FontAttributes="Bold"/>
+                            <Label Text="0 đ" TextColor="White" FontSize="15" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="1" BackgroundColor="#FF6467" StrokeThickness="0" Padding="14,12">
+                        <Border.StrokeShape><RoundRectangle CornerRadius="16"/></Border.StrokeShape>
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="↓  Chi Tiêu" TextColor="White" FontSize="13" FontAttributes="Bold"/>
+                            <Label Text="0 đ" TextColor="White" FontSize="15" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- CHỌN THÁNG -->
+                <Border BackgroundColor="White" StrokeThickness="0" Padding="8,6">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="14"/></Border.StrokeShape>
+                    <Grid ColumnDefinitions="36,*,36">
+                        <Label Text="‹" Grid.Column="0" HorizontalOptions="Center"
+                               VerticalOptions="Center" FontSize="22" TextColor="#193CB8"/>
+                        <Label Text="Tháng 4, 2023" Grid.Column="1"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               FontSize="15" FontAttributes="Bold" TextColor="#1E293B"/>
+                        <Label Text="›" Grid.Column="2" HorizontalOptions="Center"
+                               VerticalOptions="Center" FontSize="22" TextColor="#193CB8"/>
+                    </Grid>
+                </Border>
+
+                <!-- TAB BỘ LỌC -->
+                <Border BackgroundColor="White" StrokeThickness="0" Padding="5">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="14"/></Border.StrokeShape>
+                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="4">
+                        <Border Grid.Column="0" BackgroundColor="#193CB8" StrokeThickness="0" Padding="6,8">
+                            <Border.StrokeShape><RoundRectangle CornerRadius="10"/></Border.StrokeShape>
+                            <Label Text="Tất Cả" HorizontalOptions="Center"
+                                   FontSize="12" FontAttributes="Bold" TextColor="White"/>
+                        </Border>
+                        <Border Grid.Column="1" BackgroundColor="Transparent" StrokeThickness="0" Padding="6,8">
+                            <Border.StrokeShape><RoundRectangle CornerRadius="10"/></Border.StrokeShape>
+                            <Label Text="Thu Nhập" HorizontalOptions="Center" FontSize="12" TextColor="#64748B"/>
+                        </Border>
+                        <Border Grid.Column="2" BackgroundColor="Transparent" StrokeThickness="0" Padding="6,8">
+                            <Border.StrokeShape><RoundRectangle CornerRadius="10"/></Border.StrokeShape>
+                            <Label Text="Chi Tiêu" HorizontalOptions="Center" FontSize="12" TextColor="#64748B"/>
+                        </Border>
+                        <Border Grid.Column="3" BackgroundColor="Transparent" StrokeThickness="0" Padding="6,8">
+                            <Border.StrokeShape><RoundRectangle CornerRadius="10"/></Border.StrokeShape>
+                            <Label Text="Chuyển Khoản" HorizontalOptions="Center" FontSize="11" TextColor="#64748B"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- NHÓM: HÔM NAY (trống) -->
+                <Label Text="Hôm nay" FontSize="14" FontAttributes="Bold" TextColor="#64748B" Margin="4,4,0,0"/>
+                <Border BackgroundColor="White" StrokeThickness="0" Padding="14,20">
+                    <Border.StrokeShape><RoundRectangle CornerRadius="16"/></Border.StrokeShape>
+                    <Label Text="Chưa có giao dịch nào"
+                           HorizontalOptions="Center" TextColor="#CBD5E1" FontSize="13"/>
+                </Border>
+
+                <!-- NHÓM: 23 THÁNG 4 (trống) -->
+                <Label Text="23 tháng 4" FontSize="14" FontAttributes="Bold" TextColor="#64748B" Margin="4,4,0,0"/>
+                <Border BackgroundColor="White" StrokeThickness="0" Padding="14,20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="16"/>
+                    </Border.StrokeShape>
+                    <Label Text="Chưa có giao dịch nào"
+                           HorizontalOptions="Center" TextColor="#CBD5E1" FontSize="13"/>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- NÚT FAB → bấm mở trang Thêm Giao Dịch -->
+        <Border BackgroundColor="#38D5BE"
+                WidthRequest="56" HeightRequest="56"
+                HorizontalOptions="End" VerticalOptions="End"
+                Margin="0,0,20,20" StrokeThickness="0">
+            <Border.StrokeShape><Ellipse/></Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Gray" Offset="2,4" Radius="8" Opacity="0.35"/>
+            </Border.Shadow>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnThemGiaoDichClicked"/>
+            </Border.GestureRecognizers>
+            <Label Text="+" FontSize="30" FontAttributes="Bold"
+                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Border>
+    </Grid>
+</ContentPage>
