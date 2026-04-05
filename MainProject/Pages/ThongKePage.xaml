@@ -4,7 +4,7 @@
              x:Class="MainProject.Pages.ThongKePage"
              Title="ThongKePage"
              xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
-             x:DataType="viewmodels:MainViewModel"
+             xmlns:models="clr-namespace:MainProject.Models"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#D6D3D1">
 
@@ -114,9 +114,12 @@
                     </Grid>
 
                     <CollectionView Grid.Row="1" ItemsSource="{Binding ThongKeItems}" EmptyView="Khong co du lieu">
+                    <CollectionView Grid.Row="1" EmptyView="Khong co du lieu" ItemsSource="{Binding DanhSach}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="viewmodels:ThongKeViewModel">
                                 <Grid ColumnDefinitions="*, Auto" Padding="10">
+                            <DataTemplate x:DataType="models:danhmuc">
+                                <StackLayout Padding="10, 6" Orientation="Horizontal">
                                     <Label 
                                     Text="{Binding Id}" 
                                     FontSize="16" 
@@ -129,6 +132,17 @@
                                     TextColor="Black" 
                                     VerticalOptions="Center"/>
                                 </Grid>
+                                        Text="{Binding Id}"
+                                        FontSize="16" 
+                                        TextColor="Black" 
+                                        VerticalOptions="Center"/>
+                                    <Label
+                                        Text="{Binding TenDanhMuc}"
+                                        Grid.Column="1" 
+                                        FontSize="16" 
+                                        TextColor="Black" 
+                                        VerticalOptions="Center"/>
+                                </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
