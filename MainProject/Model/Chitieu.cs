@@ -15,11 +15,11 @@ namespace MainProject.Models
 
     public class giaodich
     {
-        
+
         public int Id { get; set; }
         public double sotien { get; set; }
         public string LoaiGD { get; set; } 
-        public int IDtk { get; set; }
+        public int IDvi { get; set; }
         public int IDdanhmuc { get; set; }
         public DateTime ngay { get; set; }
         public string ghichu { get; set; }
@@ -28,7 +28,7 @@ namespace MainProject.Models
     {
         public int Id { get; set; }
         public string ten { get; set; }
-        public string LoaiGD { get; set; } 
+        public string LoaiGD { get; set; }
     }
 }
 

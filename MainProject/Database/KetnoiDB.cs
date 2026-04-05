@@ -133,6 +133,7 @@ CREATE TABLE IF NOT EXISTS giaodich (
         }
 
         // chưa viết xong....
-        
+        //public ObservableCollection<danhmuc> layDanhmuc()
+
     }
 }
