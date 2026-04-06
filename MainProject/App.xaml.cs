@@ -14,13 +14,13 @@ namespace MainProject
         {
             InitializeComponent();
 
-            bool ktralogin = Preferences.Get("loginchua", false);
-            if(ktralogin == true) {
-                MainPage = new AppShell();
+            string ktralogin = Preferences.Get("ngdunght", "");
+            if(String.IsNullOrEmpty(ktralogin)) {
+                MainPage = new NavigationPage(new LoginPage(new LoginViewModel()));
             }
             else
             {
-                    MainPage = new NavigationPage(new LoginPage(new LoginViewModel()));
+                MainPage = new AppShell();
             }
         }
         protected override void OnStart()

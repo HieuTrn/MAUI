@@ -4,7 +4,8 @@
              x:Class="MainProject.Pages.MainPage"
              xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
              x:DataType="viewmodels:MainViewModel"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Background="#D6D3D1">
 
     <Grid RowDefinitions="*, Auto">
 
@@ -29,7 +30,7 @@
                         <Label Text="Xin chào," 
                                  FontSize="12" 
                                  TextColor="Gray" />
-                        <Label Text="Quản Lý Chi Tiêu" 
+                        <Label Text="{Binding Users}" 
                                  FontSize="16" 
                                  FontAttributes="Bold" 
                                  TextColor="#1C1C1C" />

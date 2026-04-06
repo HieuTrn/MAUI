@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MainProject.Pages.GiaoDichPage"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#EEF0F5">
+             BackgroundColor="#D6D3D1">
 
     <Grid>
         <ScrollView>
