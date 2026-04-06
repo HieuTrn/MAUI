@@ -2,11 +2,12 @@ using MainProject.ViewModels;
 
 namespace MainProject.Pages;
 
-public partial class ThongKePage : ContentPage
+public partial class SettingPage : ContentPage
 {
-	public ThongKePage(ChartViewModel vm)
+	public SettingPage(SettingViewModel vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;
-    }
+
+	}
 }

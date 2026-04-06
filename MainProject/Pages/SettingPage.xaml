@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MainProject.Pages.SettingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+    Title="Cài Đặt"
+    x:DataType="viewmodels:SettingViewModel"
+    BackgroundColor="#F2F5F8"
+    Shell.NavBarIsVisible="False">
+
+
+    <Grid RowDefinitions="* ,Auto">
+        <ScrollView Grid.Row="0" Padding="20">
+            <VerticalStackLayout Spacing="20">
+                <Grid ColumnDefinitions="Auto , * , Auto" VerticalOptions="Center">
+                    <Border
+                        Grid.Column="0"
+                        Padding="0"
+                        BackgroundColor="#E0E0E0"
+                        HeightRequest="40"
+                        StrokeShape="RoundRectangle 20,20,20,20"
+                        WidthRequest="40">
+                        <Image Aspect="AspectFill" Source="dotnet_bot.png" />
+
+                    </Border>
+
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Cài Đặt" />
+                    <Label
+                        Grid.Column="2"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="🔔" />
+
+
+                </Grid>
+                <VerticalStackLayout Spacing="20">
+                    <Border
+                        Padding="20"
+                        Background="Aqua"
+                        HeightRequest="80"
+                        StrokeShape="RoundRectangle 20"
+                        StrokeThickness="0" />
+                </VerticalStackLayout>
+
+
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+
+</ContentPage>

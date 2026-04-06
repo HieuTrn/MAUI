@@ -33,6 +33,7 @@ public partial class LoginViewModel : MainViewModel
         }
         if (checkdn == true)
         {
+            Preferences.Default.Set("loginchua", true);
             Application.Current.MainPage = new AppShell();
         }
         else

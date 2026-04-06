@@ -10,6 +10,6 @@ public partial class GiaoDichPage : ContentPage
     // Nút FAB "+" → điều hướng sang trang Thêm Giao Dịch
     private async void OnThemGiaoDichClicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new ThemGiaoDichPage());
+        await Shell.Current.GoToAsync(nameof(ThemGiaoDichPage));
     }
 }

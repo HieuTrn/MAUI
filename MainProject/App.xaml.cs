@@ -13,7 +13,15 @@ namespace MainProject
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginPage(new LoginViewModel()));
+
+            bool ktralogin = Preferences.Get("loginchua", false);
+            if(ktralogin == true) {
+                MainPage = new AppShell();
+            }
+            else
+            {
+                    MainPage = new NavigationPage(new LoginPage(new LoginViewModel()));
+            }
         }
         protected override void OnStart()
         {

@@ -11,6 +11,6 @@ public partial class MainPage : ContentPage
     }
     private async void OnViewAllTapped(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new AllTransactionsPage());
+        await Shell.Current.GoToAsync(nameof(AllTransactionsPage));
     }
 }
