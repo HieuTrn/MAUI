@@ -27,12 +27,18 @@
 
                 <!-- TOGGLE: CHI TIÊU / THU NHẬP -->
                 <Grid ColumnDefinitions="*,*" ColumnSpacing="0">
-                    <Border Grid.Column="0" BackgroundColor="#FFA94D" StrokeThickness="0" Padding="0,14">
+                    <Border x:Name="BtnChiTieu" Grid.Column="0" BackgroundColor="#FFA94D" StrokeThickness="0" Padding="0,14">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLoaiGDClicked" CommandParameter="ChiTieu"/>
+                        </Border.GestureRecognizers>
                         <Border.StrokeShape><RoundRectangle CornerRadius="12,0,0,12"/></Border.StrokeShape>
                         <Label Text="Chi Tiêu" HorizontalOptions="Center"
                                FontSize="15" FontAttributes="Bold" TextColor="White"/>
                     </Border>
-                    <Border Grid.Column="1" BackgroundColor="#DDE3F0" StrokeThickness="0" Padding="0,14">
+                    <Border x:Name="BtnThuNhap" Grid.Column="1" BackgroundColor="#DDE3F0" StrokeThickness="0" Padding="0,14">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLoaiGDClicked" CommandParameter="ThuNhap"/>
+                        </Border.GestureRecognizers>
                         <Border.StrokeShape><RoundRectangle CornerRadius="0,12,12,0"/></Border.StrokeShape>
                         <Label Text="Thu Nhập" HorizontalOptions="Center"
                                FontSize="15" TextColor="#64748B"/>
