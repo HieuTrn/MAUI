@@ -37,6 +37,7 @@ public partial class LoginViewModel : ObservableObject
         {
             Preferences.Default.Set("ngdunght", Username);
             Preferences.Default.Set("UserID", loggedInUserId);
+
             Application.Current.MainPage = new AppShell();
         }
         else

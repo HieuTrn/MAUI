@@ -4,6 +4,8 @@ using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace MainProject.Database
@@ -19,10 +21,10 @@ namespace MainProject.Database
         {
             connect = $"Data Source={dbpath}";
 
-            Console.WriteLine("==================================================");
-            Console.WriteLine(" ĐƯỜNG DẪN DATABASE FILE SQLite NẰM Ở ĐÂY: ");// lấy đường dẫn db ra để mở lên xem có chạy được k
-            Console.WriteLine(dbpath);                                       // nhớ xoá đi nếu cbi nộp
-            Console.WriteLine("==================================================");
+            Debug.WriteLine("==================================================");
+            Debug.WriteLine(" ĐƯỜNG DẪN DATABASE FILE SQLite NẰM Ở ĐÂY: ");// lấy đường dẫn db ra để mở lên xem có chạy được k
+            Debug.WriteLine(dbpath);                                       // nhớ xoá đi nếu cbi nộp
+            Debug.WriteLine("==================================================");
 
         }
 

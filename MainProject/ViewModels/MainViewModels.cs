@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MainProject.Pages;
+using MainProject.Database;
 using MainProject.Models;
-using System.ComponentModel;
+using MainProject.Pages;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace MainProject.ViewModels;
     public partial class MainViewModel : ObservableObject
@@ -39,7 +41,15 @@ namespace MainProject.ViewModels;
     public void LoadDuLieu()
     {
         DanhSachGiaoDich = new ObservableCollection<GiaoDichDisplay>();
-        DanhSachGiaoDich = App.ketnoiDB.hthigd(Users);
+        try
+        {
+            DanhSachGiaoDich = App.ketnoiDB.hthigd(Users);
+
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("❌ Lỗi: " + ex.ToString());
+        } 
     }
     public void Tinhtong()
     {
@@ -59,11 +69,11 @@ namespace MainProject.ViewModels;
             var gd = DanhSachGiaoDich[i];
 
             
-            if (gd.LoaiGD == "Thu")
+            if (gd.LoaiGD == "Thu Nhập")
             {
 
                 thu += gd.SoTien;
-            } else if(gd.LoaiGD == "Chi")
+            } else if(gd.LoaiGD == "Chi Tiêu")
             {
                 chi += gd.SoTien;
             }
