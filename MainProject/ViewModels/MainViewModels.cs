@@ -15,6 +15,11 @@ namespace MainProject.ViewModels;
     {
         Users = Preferences.Default.Get("ngdunght", "");
     }
+    [RelayCommand]
+    async Task NavigateToDanhMuc()
+    {
+        await Shell.Current.GoToAsync(nameof(DanhMucPage));
+    }
 
 
 }
