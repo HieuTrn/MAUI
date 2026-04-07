@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using MainProject.Database;
 using MainProject.Models;
 using MainProject.Pages;
@@ -16,8 +17,12 @@ public partial class DanhMucViewModel : ObservableObject
 
     [ObservableProperty]
     String _text;
+
     [ObservableProperty]
-    String _text1;
+    List<string> _danhSachLoaiGD = new List<string> { "Thu Nhập", "Chi Tiêu" };
+
+    [ObservableProperty]
+    string _loaiGDDuocChon;
 
     public DanhMucViewModel()
     {
@@ -42,17 +47,16 @@ public partial class DanhMucViewModel : ObservableObject
     [RelayCommand]
     private void ThemDanhMuc()
     {
-        if (!string.IsNullOrWhiteSpace(Text))
+        if (!string.IsNullOrWhiteSpace(Text) && !string.IsNullOrWhiteSpace(LoaiGDDuocChon))
         {
             danhmuc newDanhMuc = new danhmuc
             {
-                ten = Text,
-                LoaiGD = Text1
+                ten = Text
             };
-            _dB.ThemDanhmuc(Text, Text1);
+            _dB.ThemDanhmuc(Text, LoaiGDDuocChon);
             LoadData();
             Text = string.Empty;
-            Text1 = string.Empty;
+            LoaiGDDuocChon = null;
         }
     }
 }

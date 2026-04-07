@@ -23,6 +23,12 @@ namespace MainProject.ViewModels;
 
 
 
+    [RelayCommand]
+    async void GotoDanhMuc()
+    {
+        await Shell.Current.GoToAsync(nameof(DanhMucPage));
+    }
+
     public MainViewModel()
     {
         Users = Preferences.Default.Get("ngdunght", "");

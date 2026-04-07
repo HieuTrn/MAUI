@@ -7,16 +7,17 @@
              xmlns:models="clr-namespace:MainProject.Models"
              Background="#EEF0F5"
              Title="Quan ly Danh Muc">
-    
-    <Grid RowDefinitions="20*, 80*" ColumnDefinitions="70*, 30*">
-        <VerticalStackLayout>  
-        <Entry Placeholder="Nhập tên danh mục"
-                   Text="{Binding Text}"
-                   Margin="10"/>
-            <Entry Placeholder="Nhập loại giao dịch"
-                   Text="{Binding Text1}"
-                   Grid.Column="1"
-                   Margin="10"/>
+
+    <Grid RowDefinitions="Auto, *" ColumnDefinitions="70*, 30*">
+        <VerticalStackLayout Grid.Column="0" Margin="10,20,10,10" Spacing="15">
+
+            <Entry Placeholder="Nhập tên danh mục"
+                   Text="{Binding Text}" />
+
+            <Picker Title="Chọn loại danh mục"
+                    ItemsSource="{Binding DanhSachLoaiGD}"
+                    SelectedItem="{Binding LoaiGDDuocChon}" />
+
         </VerticalStackLayout>
         <Button Command="{Binding ThemDanhMucCommand}"
                 Grid.Column="1"
@@ -47,7 +48,20 @@
                             </Border.StrokeShape>
                             <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
                                 <Label Text="{Binding ten}" FontSize="16" Padding="10"/>
-                                <Label Text="{Binding LoaiGD}" FontSize="16" Padding="10"/>
+                                <Label Text="{Binding LoaiGD}" 
+                                       FontSize="14" 
+                                       FontAttributes="Bold" 
+                                       Padding="10"
+                                       VerticalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding LoaiGD}" Value="Thu Nhập">
+                                            <Setter Property="TextColor" Value="#16A34A" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding LoaiGD}" Value="Chi Tiêu">
+                                            <Setter Property="TextColor" Value="#DC2626" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
                             </StackLayout>
                         </Border>
                         
