@@ -8,9 +8,10 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         BindingContext = vm;
+        BindingContext = new ChartViewModel();
     }
     private async void OnViewAllTapped(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(AllTransactionsPage));
+        await Shell.Current.GoToAsync(nameof(GiaoDichGanDayPage));
     }
 }

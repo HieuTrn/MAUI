@@ -78,22 +78,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\GiaoDichGanDayPage.xaml.cs">
+	    <DependentUpon>GiaoDichGanDayPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\SettingPage.xaml.cs">
 	    <DependentUpon>SettingPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AllTransactionsPage.xaml">
+	  <MauiXaml Update="Pages\GiaoDichGanDayPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\DanhMucPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\Quanlidanhmuc.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\QuanlitaikhoanPage.xaml">

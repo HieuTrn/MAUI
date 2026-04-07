@@ -32,7 +32,8 @@ namespace MainProject;
             builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<SettingPage>();
             builder.Services.AddTransient<SettingViewModel>();
-
-            return builder.Build();
+            builder.Services.AddTransient<DanhMucViewModel>();
+            builder.Services.AddTransient<DanhMucPage>();
+        return builder.Build();
         }
     }

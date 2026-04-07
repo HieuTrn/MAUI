@@ -189,5 +189,44 @@ namespace MainProject.Database
                 truyvan.ExecuteNonQuery();
             }
         }
+        public ObservableCollection<GiaoDichDisplay> hthigd(string username)
+        {
+            using (var connection = new SqliteConnection(connect))
+            {
+                connection.Open();
+                var ds = new ObservableCollection<GiaoDichDisplay>();
+                var truyvan = connection.CreateCommand();
+                truyvan.CommandText = @"
+            SELECT 
+                g.Id, 
+                g.sotien, 
+                g.LoaiGD, 
+                d.ten AS TenDanhMuc, 
+                g.ngay, 
+                g.ghichu 
+            FROM giaodich g
+            INNER JOIN danhmuc d ON g.IDdanhmuc = d.Id
+            INNER JOIN taikhoan t ON g.IDtk = t.Id
+            WHERE t.user = $username
+            ORDER BY g.ngay DESC";
+                truyvan.Parameters.AddWithValue("$username", username);
+                using (var doc = truyvan.ExecuteReader())
+                {
+                    while (doc.Read())
+                    {
+                        ds.Add(new GiaoDichDisplay
+                        {
+                            Id = doc.GetInt32(0),
+                            SoTien = doc.GetDouble(1),
+                            LoaiGD = doc.GetString(2),
+                            TenDanhMuc = doc.GetString(3),
+                            Ngay = doc.GetString(4),
+                            GhiChu = doc.IsDBNull(5) ? "" : doc.GetString(5)
+                        });
+                    }
+                }
+                return ds;
+            }
+        }
     }
 }
