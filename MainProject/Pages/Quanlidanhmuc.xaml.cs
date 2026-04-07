@@ -2,9 +2,9 @@ using MainProject.ViewModels;
 
 namespace MainProject.Pages;
 
-public partial class ThongKePage : ContentPage
+public partial class Quanlidanhmuc : ContentPage
 {
-	public ThongKePage(ChartViewModel vm)
+	public Quanlidanhmuc(SettingViewModel vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

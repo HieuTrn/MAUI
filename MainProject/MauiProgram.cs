@@ -20,18 +20,15 @@ namespace MainProject;
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             
-            builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<MainViewModel>();
-            builder.Services.AddTransient<DanhMucViewModel>();
-            builder.Services.AddTransient<DanhMucPage>();
-
-
-
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<ThongKePage>();
-            builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<ChartViewModel>();
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<SettingPage>();
+            builder.Services.AddTransient<SettingViewModel>();
 
             return builder.Build();
         }

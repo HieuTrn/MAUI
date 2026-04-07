@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 
 
 namespace MainProject.ViewModels;
-public partial class LoginViewModel : MainViewModel
+public partial class LoginViewModel : ObservableObject
 {
 
     [ObservableProperty]
@@ -19,7 +19,7 @@ public partial class LoginViewModel : MainViewModel
         if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
         {
 
-            await Application.Current.MainPage.DisplayAlert("⚠️ Lỗi", "Vui lòng nhập đầy đủ thông tin", "OK");
+            await Application.Current.MainPage.DisplayAlert("⚠️ Lỗi", "Vui lòng nhập đầy đủ thông tin", "✅ OK");
             return;
         }
         var dstk = App.ketnoiDB.laytk();
@@ -33,6 +33,7 @@ public partial class LoginViewModel : MainViewModel
         }
         if (checkdn == true)
         {
+            Preferences.Default.Set("ngdunght", Username);
             Application.Current.MainPage = new AppShell();
         }
         else

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MainProject.Pages.QuanlitaikhoanPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+    Title="Quản lí tài khoản"
+    x:DataType="viewmodels:SettingViewModel"
+    Shell.NavBarIsVisible="True">
+    
+    
+    <VerticalStackLayout Padding="20" Spacing="30">
+        <Button
+            Background="WhiteSmoke"
+            BorderColor="Aquamarine"
+            BorderWidth="1"
+            Command="{Binding themtkCommand}"
+            CornerRadius="15"
+            Padding="20"
+            FontSize="Medium"
+            HorizontalOptions="Fill"
+            Text="Thêm Tài Khoản"
+            TextColor="#1877F2" />
+
+
+        <Label Text="Tài khoản đang đăng nhập:" TextColor="Gray" Margin="0,0,0,10"/>
+
+        <Border BackgroundColor="White" 
+                StrokeThickness="1" 
+                Stroke="#E0E0E0" 
+                StrokeShape="RoundRectangle 15" 
+                Padding="20">
+
+            <Grid ColumnDefinitions="Auto, *">
+
+                <Label Grid.Column="0" Text="👤" FontSize="24" VerticalOptions="Center"/>
+
+                <HorizontalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="15,0,0,0" Spacing="5">
+                    <Label Text="{Binding User}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+                    <Label Text="✅" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+            </Grid>
+
+        </Border>
+
+    </VerticalStackLayout>
+</ContentPage>

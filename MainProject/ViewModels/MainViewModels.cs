@@ -8,22 +8,13 @@ using System.Collections.ObjectModel;
 namespace MainProject.ViewModels;
     public partial class MainViewModel : ObservableObject
 {
-    [RelayCommand]
-    Task Navigate() => Shell.Current.GoToAsync(nameof(LoginPage));
+    [ObservableProperty]
+    private string _users;
 
-    [RelayCommand]
-    Task Nagivate() => Shell.Current.GoToAsync(nameof(ThongKePage));
-
-    [RelayCommand]
-    async Task NavigateToDanhMuc()
+    public MainViewModel()
     {
-        await Shell.Current.GoToAsync(nameof(DanhMucPage));
+        Users = Preferences.Default.Get("ngdunght", "");
     }
 
-    [RelayCommand]
-    async Task Logout()
-    {
-        // chưa có ý tưởng....
 
-    }
 }

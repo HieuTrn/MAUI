@@ -30,6 +30,6 @@ namespace MainProject.Models
         public int Id { get; set; }
         public string ten { get; set; }
         public string LoaiGD { get; set; } 
-        public DateTime ngay { get; set; }
+        
     }
 }
