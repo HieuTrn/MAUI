@@ -9,13 +9,13 @@
     xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
     Title="ThongKePage"
     x:DataType="viewmodels:MainViewModel"
-    BackgroundColor="#EEF0F5"
+    BackgroundColor="#D6D3D1"
     Shell.NavBarIsVisible="False">
 
     <ScrollView>
         <Grid
             Padding="15"
-            RowDefinitions="Auto, 50, 200, 150, *"
+            RowDefinitions="Auto, 50, 250, 330, *"
             RowSpacing="15">
 
             <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
@@ -40,7 +40,7 @@
                             FontAttributes="Bold"
                             FontSize="18"
                             HorizontalOptions="Center"
-                            Text="12.000.000"
+                            Text="{Binding Tongthu, StringFormat='{0:N0} đ'}"
                             TextColor="White" />
                     </VerticalStackLayout>
                 </Border>
@@ -65,7 +65,7 @@
                             FontAttributes="Bold"
                             FontSize="18"
                             HorizontalOptions="Center"
-                            Text="12.000.000"
+                            Text="{Binding Tongchi, StringFormat='{0:N0} đ'}"
                             TextColor="White" />
                     </VerticalStackLayout>
                 </Border>
@@ -108,7 +108,7 @@
                         BackgroundColor="#F8F9FA"
                         HorizontalOptions="Fill"
                         LegendPosition="Right"
-                        Series="{Binding Bieudo}"
+                        Series="{Binding Bieudotron}"
                         VerticalOptions="Fill" />
 
                 </Grid>
@@ -118,16 +118,30 @@
                 Grid.Row="3"
                 BackgroundColor="#F4F4F5"
                 Stroke="#F4F4F5">
+                
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="20" />
                 </Border.StrokeShape>
 
-                <Label
-                    Padding="15"
-                    FontAttributes="Bold"
-                    FontSize="18"
-                    Text="Chi tiêu theo thời gian"
-                    TextColor="Black" />
+                <Grid RowDefinitions="Auto , *">
+                    <Label
+                        Padding="10"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Chi tiêu theo thời gian"
+                        TextColor="Black" />
+                    <lvc:CartesianChart
+                        Grid.Row="1"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Fill"
+                        LegendPosition="Bottom"
+                        Series="{Binding Bieudocot}"
+                        VerticalOptions="Fill"
+                        XAxes="{Binding X}"
+                        YAxes="{Binding Y}" />
+                </Grid>
+
+
             </Border>
 
             <Border
@@ -138,7 +152,10 @@
                     <RoundRectangle CornerRadius="20" />
                 </Border.StrokeShape>
 
-                <Grid Padding="15" RowDefinitions="Auto, *">
+                <Grid
+                    Padding="15"
+                    RowDefinitions="Auto, *"
+                    RowSpacing="20">
                     <Grid ColumnDefinitions="*, Auto">
                         <Label
                             FontAttributes="Bold"
@@ -156,7 +173,7 @@
                             VerticalOptions="Center" />
                     </Grid>
 
-                    <CollectionView ItemsSource="{Binding DanhSachGiaoDich}">
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding DanhSachGiaoDich}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:GiaoDichDisplay">
 

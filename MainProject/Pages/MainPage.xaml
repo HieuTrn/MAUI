@@ -149,8 +149,9 @@
                         <lvc:PieChart
                             Grid.Row="1"
                             BackgroundColor="#F8F9FA"
+                            HorizontalOptions="Fill"
                             LegendPosition="Right"
-                            Series="{Binding Bieudo}"
+                            Series="{Binding Bieudotron}"
                             VerticalOptions="Fill" />
                     </Grid>
                 </Border>

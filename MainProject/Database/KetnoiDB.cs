@@ -189,7 +189,7 @@ namespace MainProject.Database
                 truyvan.ExecuteNonQuery();
             }
         }
-        public ObservableCollection<GiaoDichDisplay> hthidg()
+        public ObservableCollection<GiaoDichDisplay> hthigd(string username)
         {
             using (var connection = new SqliteConnection(connect))
             {
@@ -206,8 +206,10 @@ namespace MainProject.Database
                 g.ghichu 
             FROM giaodich g
             INNER JOIN danhmuc d ON g.IDdanhmuc = d.Id
+            INNER JOIN taikhoan t ON g.IDtk = t.Id
+            WHERE t.user = $username
             ORDER BY g.ngay DESC";
-
+                truyvan.Parameters.AddWithValue("$username", username);
                 using (var doc = truyvan.ExecuteReader())
                 {
                     while (doc.Read())
