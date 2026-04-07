@@ -1,5 +1,4 @@
 ﻿using MainProject.ViewModels;
-
 namespace MainProject.Pages;
 
 public partial class MainPage : ContentPage
@@ -19,6 +18,8 @@ public partial class MainPage : ContentPage
         {
             vm.LoadDuLieu();
             vm.Tinhtong();
+            
+            
         }
     }
     private async void OnViewAllTapped(object sender, EventArgs e)

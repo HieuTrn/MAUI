@@ -1,110 +1,148 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MainProject.Pages.GiaoDichPage"
-             Shell.NavBarIsVisible="False"
-             BackgroundColor="#D6D3D1">
+<ContentPage
+    x:Class="MainProject.Pages.GiaoDichPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MainProject.Models"
+    xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+    BackgroundColor="#F3F4F6"
+    Shell.NavBarIsVisible="False">
 
     <Grid>
-        <ScrollView>
-            <VerticalStackLayout Padding="15,10" Spacing="12">
+        <VerticalStackLayout Margin="15" Spacing="15">
 
-                <!-- TIÊU ĐỀ -->
-                <Label Text="Giao Dịch"
-                       FontSize="20" FontAttributes="Bold"
-                       HorizontalOptions="Center" TextColor="#1E293B"
-                       Margin="0,5,0,0"/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="Giao Dịch"
+                TextColor="#1E293B" />
 
-                <!-- 2 THẺ: THU NHẬP / CHI TIÊU -->
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
-                    <Border Grid.Column="0" BackgroundColor="#38D5BE" StrokeThickness="0" Padding="14,12">
-                        <Border.StrokeShape><RoundRectangle CornerRadius="16"/></Border.StrokeShape>
-                        <VerticalStackLayout Spacing="4">
-                            <Label Text="↑  Thu Nhập" TextColor="White" FontSize="13" FontAttributes="Bold"/>
-                            <Label Text="0 đ" TextColor="White" FontSize="15" FontAttributes="Bold"/>
-                        </VerticalStackLayout>
-                    </Border>
-                    <Border Grid.Column="1" BackgroundColor="#FF6467" StrokeThickness="0" Padding="14,12">
-                        <Border.StrokeShape><RoundRectangle CornerRadius="16"/></Border.StrokeShape>
-                        <VerticalStackLayout Spacing="4">
-                            <Label Text="↓  Chi Tiêu" TextColor="White" FontSize="13" FontAttributes="Bold"/>
-                            <Label Text="0 đ" TextColor="White" FontSize="15" FontAttributes="Bold"/>
-                        </VerticalStackLayout>
-                    </Border>
-                </Grid>
+            <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10">
+                <Frame
+                    Padding="15"
+                    BackgroundColor="#38D5BE"
+                    CornerRadius="12"
+                    HasShadow="False"
+                    WidthRequest="170">
+                    <VerticalStackLayout Spacing="5">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="↑ Thu Nhập"
+                            TextColor="White" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding Tongthu, StringFormat='{0:N0} đ'}"
+                            TextColor="White" />
+                    </VerticalStackLayout>
+                </Frame>
 
-                <!-- CHỌN THÁNG -->
-                <Border BackgroundColor="White" StrokeThickness="0" Padding="8,6">
-                    <Border.StrokeShape><RoundRectangle CornerRadius="14"/></Border.StrokeShape>
-                    <Grid ColumnDefinitions="36,*,36">
-                        <Label Text="‹" Grid.Column="0" HorizontalOptions="Center"
-                               VerticalOptions="Center" FontSize="22" TextColor="#193CB8"/>
-                        <Label Text="Tháng 4, 2023" Grid.Column="1"
-                               HorizontalOptions="Center" VerticalOptions="Center"
-                               FontSize="15" FontAttributes="Bold" TextColor="#1E293B"/>
-                        <Label Text="›" Grid.Column="2" HorizontalOptions="Center"
-                               VerticalOptions="Center" FontSize="22" TextColor="#193CB8"/>
-                    </Grid>
-                </Border>
+                <Frame
+                    Padding="15"
+                    BackgroundColor="#FF6467"
+                    CornerRadius="12"
+                    HasShadow="False"
+                    WidthRequest="170">
+                    <VerticalStackLayout Spacing="5">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="↓ Chi Tiêu"
+                            TextColor="White" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding Tongchi, StringFormat='{0:N0} đ'}"
+                            TextColor="White" />
+                    </VerticalStackLayout>
+                </Frame>
+            </HorizontalStackLayout>
 
-                <!-- TAB BỘ LỌC -->
-                <Border BackgroundColor="White" StrokeThickness="0" Padding="5">
-                    <Border.StrokeShape><RoundRectangle CornerRadius="14"/></Border.StrokeShape>
-                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="4">
-                        <Border Grid.Column="0" BackgroundColor="#193CB8" StrokeThickness="0" Padding="6,8">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="10"/></Border.StrokeShape>
-                            <Label Text="Tất Cả" HorizontalOptions="Center"
-                                   FontSize="12" FontAttributes="Bold" TextColor="White"/>
-                        </Border>
-                        <Border Grid.Column="1" BackgroundColor="Transparent" StrokeThickness="0" Padding="6,8">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="10"/></Border.StrokeShape>
-                            <Label Text="Thu Nhập" HorizontalOptions="Center" FontSize="12" TextColor="#64748B"/>
-                        </Border>
-                        <Border Grid.Column="2" BackgroundColor="Transparent" StrokeThickness="0" Padding="6,8">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="10"/></Border.StrokeShape>
-                            <Label Text="Chi Tiêu" HorizontalOptions="Center" FontSize="12" TextColor="#64748B"/>
-                        </Border>
-                        <Border Grid.Column="3" BackgroundColor="Transparent" StrokeThickness="0" Padding="6,8">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="10"/></Border.StrokeShape>
-                            <Label Text="Chuyển Khoản" HorizontalOptions="Center" FontSize="11" TextColor="#64748B"/>
-                        </Border>
-                    </Grid>
-                </Border>
+            <Label
+                Margin="0,10,0,0"
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Lịch sử giao dịch"
+                TextColor="#333" />
 
-                <!-- NHÓM: HÔM NAY (trống) -->
-                <Label Text="Hôm nay" FontSize="14" FontAttributes="Bold" TextColor="#64748B" Margin="4,4,0,0"/>
-                <Border BackgroundColor="White" StrokeThickness="0" Padding="14,20">
-                    <Border.StrokeShape><RoundRectangle CornerRadius="16"/></Border.StrokeShape>
-                    <Label Text="Chưa có giao dịch nào"
-                           HorizontalOptions="Center" TextColor="#CBD5E1" FontSize="13"/>
-                </Border>
+            <CollectionView ItemsSource="{Binding DanhSachGiaoDich}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:GiaoDichDisplay">
 
-                <!-- NHÓM: 23 THÁNG 4 (trống) -->
-                <Label Text="23 tháng 4" FontSize="14" FontAttributes="Bold" TextColor="#64748B" Margin="4,4,0,0"/>
-                <Border BackgroundColor="White" StrokeThickness="0" Padding="14,20">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="16"/>
-                    </Border.StrokeShape>
-                    <Label Text="Chưa có giao dịch nào"
-                           HorizontalOptions="Center" TextColor="#CBD5E1" FontSize="13"/>
-                </Border>
-            </VerticalStackLayout>
-        </ScrollView>
+                        <Frame
+                            Margin="0,0,0,10"
+                            Padding="15"
+                            BorderColor="#E0E0E0"
+                            CornerRadius="8"
+                            HasShadow="False">
 
-        <!-- NÚT FAB → bấm mở trang Thêm Giao Dịch -->
-        <Border BackgroundColor="#38D5BE"
-                WidthRequest="56" HeightRequest="56"
-                HorizontalOptions="End" VerticalOptions="End"
-                Margin="0,0,20,20" StrokeThickness="0">
-            <Border.StrokeShape><Ellipse/></Border.StrokeShape>
-            <Border.Shadow>
-                <Shadow Brush="Gray" Offset="2,4" Radius="8" Opacity="0.35"/>
-            </Border.Shadow>
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnThemGiaoDichClicked"/>
-            </Border.GestureRecognizers>
-            <Label Text="+" FontSize="30" FontAttributes="Bold"
-                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </Border>
+                            <HorizontalStackLayout Spacing="15">
+
+                                <Label
+                                    FontSize="24"
+                                    Text="🏷️"
+                                    VerticalOptions="Center" />
+
+                                <VerticalStackLayout VerticalOptions="Center" WidthRequest="150">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding TenDanhMuc}"
+                                        TextColor="Black" />
+                                    <Label
+                                        FontSize="12"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding GhiChu}"
+                                        TextColor="Gray" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout HorizontalOptions="End" VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding DinhDangSoTien}"
+                                        TextColor="{Binding MauSoTien}" />
+                                    <Label
+                                        FontSize="11"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Ngay}"
+                                        TextColor="Gray" />
+                                </VerticalStackLayout>
+
+                            </HorizontalStackLayout>
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+
+        <Frame
+            Margin="0,0,20,20"
+            Padding="0"
+            BackgroundColor="#38D5BE"
+            CornerRadius="28"
+            HasShadow="True"
+            HeightRequest="56"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            WidthRequest="56">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnThemGiaoDichClicked" />
+            </Frame.GestureRecognizers>
+            <Label
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="+"
+                TextColor="White"
+                VerticalOptions="Center" />
+        </Frame>
+
     </Grid>
 </ContentPage>
