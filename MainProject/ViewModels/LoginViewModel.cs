@@ -16,6 +16,7 @@ public partial class LoginViewModel : ObservableObject
     async Task Login()
     {
         bool checkdn = false;
+        int loggedInUserId = -1;
         if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
         {
 
@@ -28,12 +29,14 @@ public partial class LoginViewModel : ObservableObject
             if (dstk[i].user == Username && dstk[i].password == Password)
             {
                 checkdn = true;
+                loggedInUserId = dstk[i].Id;
                 break;
             }
         }
         if (checkdn == true)
         {
             Preferences.Default.Set("ngdunght", Username);
+            Preferences.Default.Set("UserID", loggedInUserId);
             Application.Current.MainPage = new AppShell();
         }
         else
