@@ -21,4 +21,15 @@ public partial class ThongKePage : ContentPage
             vm.LoadData();
         }
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+
+        if (BindingContext is ChartViewModel vm)
+        {
+            vm.LoadDuLieu();
+            vm.Tinhtong();
+        }
+    }
 }

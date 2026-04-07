@@ -15,7 +15,8 @@ namespace MainProject
             InitializeComponent();
 
             string ktralogin = Preferences.Get("ngdunght", "");
-            if(String.IsNullOrEmpty(ktralogin)) {
+            
+            if (String.IsNullOrEmpty(ktralogin)) {
                 MainPage = new NavigationPage(new LoginPage(new LoginViewModel()));
             }
             else

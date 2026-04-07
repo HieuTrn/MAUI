@@ -10,6 +10,17 @@ public partial class MainPage : ContentPage
         BindingContext = vm;
         BindingContext = new ChartViewModel();
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        
+        if (BindingContext is MainViewModel vm)
+        {
+            vm.LoadDuLieu();
+            vm.Tinhtong();
+        }
+    }
     private async void OnViewAllTapped(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(GiaoDichGanDayPage));

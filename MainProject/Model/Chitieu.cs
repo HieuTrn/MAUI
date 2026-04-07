@@ -41,7 +41,7 @@ namespace MainProject.Models
         public string GhiChu { get; set; }
 
         
-        public Color MauSoTien => LoaiGD == "Thu" ? Colors.Green : Colors.Red;
-        public string DinhDangSoTien => LoaiGD == "Thu" ? $"+{SoTien:N0} đ" : $"-{SoTien:N0} đ";
+        public Color MauSoTien => LoaiGD == "Thu Nhập" ? Colors.Green : Colors.Red;
+        public string DinhDangSoTien => LoaiGD == "Thu Nhập" ? $"+{SoTien:N0} đ" : $"-{SoTien:N0} đ";
     }
 }
