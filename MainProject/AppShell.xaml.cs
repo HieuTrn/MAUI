@@ -14,5 +14,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(AllTransactionsPage), typeof(AllTransactionsPage));
         Routing.RegisterRoute(nameof(QuanlitaikhoanPage), typeof(QuanlitaikhoanPage));
         Routing.RegisterRoute(nameof(Quanlidanhmuc), typeof(Quanlidanhmuc));
+        Routing.RegisterRoute(nameof(DanhMucPage), typeof(DanhMucPage));
     }
 }

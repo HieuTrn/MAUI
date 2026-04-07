@@ -22,6 +22,9 @@ namespace MainProject;
             
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<DanhMucPage>();
+            builder .Services.AddTransient<DanhMucViewModel>();
+            builder.Services.AddTransient<GiaoDichPage>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<ThongKePage>();
             builder.Services.AddTransient<ChartViewModel>();

@@ -133,7 +133,7 @@
                             </Border.StrokeShape>
 
                             <Border.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateToDanhMucCommand}"/>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding GotoDanhMucCommand}"/>
                             </Border.GestureRecognizers>
                             
                             <Label Text="☰" 

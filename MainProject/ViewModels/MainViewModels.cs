@@ -11,6 +11,12 @@ namespace MainProject.ViewModels;
     [ObservableProperty]
     private string _users;
 
+    [RelayCommand]
+    async void GotoDanhMuc()
+    {
+        await Shell.Current.GoToAsync(nameof(DanhMucPage));
+    }
+
     public MainViewModel()
     {
         Users = Preferences.Default.Get("ngdunght", "");
