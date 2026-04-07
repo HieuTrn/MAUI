@@ -25,6 +25,7 @@ namespace MainProject.Database
             Console.WriteLine("==================================================");
 
         }
+
         public void Taodb()
         {
             using (var connection = new SqliteConnection(connect))
@@ -36,27 +37,25 @@ namespace MainProject.Database
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user TEXT,
                     password TEXT,
-                    sotien REAL NOT NULL
-);
-CREATE TABLE IF NOT EXISTS danhmuc (
-            Id INTEGER PRIMARY KEY AUTOINCREMENT,
-            ten TEXT NOT NULL,
-            LoaiGD TEXT NOT NULL
-        );
-CREATE TABLE IF NOT EXISTS giaodich (
-    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-    sotien REAL NOT NULL,
-    LoaiGD TEXT NOT NULL,
-    IDtk INTEGER,
-    IDdanhmuc INTEGER,
-    ngay TEXT,
-    ghichu TEXT,
-    FOREIGN KEY (IDtk) REFERENCES taikhoan(Id),
-    FOREIGN KEY (IDdanhmuc) REFERENCES danhmuc(Id)
-);
-";
-                truyvan.ExecuteNonQuery();
+                    sotien REAL NOT NULL);
 
+                    CREATE TABLE IF NOT EXISTS danhmuc (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    ten TEXT NOT NULL,
+                    LoaiGD TEXT NOT NULL);
+
+                    CREATE TABLE IF NOT EXISTS giaodich (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    sotien REAL NOT NULL,
+                    LoaiGD TEXT NOT NULL,
+                    IDtk INTEGER,
+                    IDdanhmuc INTEGER,
+                    ngay TEXT,
+                    ghichu TEXT,
+                    FOREIGN KEY (IDtk) REFERENCES taikhoan(Id),
+                    FOREIGN KEY (IDdanhmuc) REFERENCES danhmuc(Id));";
+
+                truyvan.ExecuteNonQuery();
             }
 
         }
@@ -74,19 +73,7 @@ CREATE TABLE IF NOT EXISTS giaodich (
                 truyvan.ExecuteNonQuery();
             }
         }
-        public void themDanhmuc(string ten, string loaigd)
-        {
-            using (var connection = new SqliteConnection(connect))
-            {
-                connection.Open();
-                var truyvan = connection.CreateCommand();
-                truyvan.CommandText =
-                    @"INSERT INTO danhmuc(ten, LoaiGD) VALUES ($name , $GD);";
-                truyvan.Parameters.AddWithValue("$name", ten);
-                truyvan.Parameters.AddWithValue("$GD", loaigd);
-                truyvan.ExecuteNonQuery();
-            }
-        }
+
         public void ThemGd(double soTien, string loaiGD, int idVi, int idDanhMuc, DateTime ngayGD, string ghiChu)
         {
             using (var connection = new SqliteConnection(connect))
@@ -132,8 +119,75 @@ CREATE TABLE IF NOT EXISTS giaodich (
             }
         }
 
-        // chưa viết xong....
-        //public ObservableCollection<danhmuc> layDanhmuc()
+        public ObservableCollection<danhmuc> layDanhmuc()
+        {
+            using (var connection = new SqliteConnection(connect))
+            {
+                connection.Open();
+                var ds = new ObservableCollection<danhmuc>();
+                var truyvan = connection.CreateCommand();
+                truyvan.CommandText = @"SELECT Id, ten, LoaiGD FROM danhmuc";
+                using (var doc = truyvan.ExecuteReader())
+                {
+                    while (doc.Read())
+                    {
+                        ds.Add(new danhmuc
+                        {
+                            Id = doc.GetInt32(0),
+                            ten = doc.GetString(1),
+                            LoaiGD = doc.GetString(2)
+                        });
+                    }
+                }
+                return ds;
+            }
+        }
 
+        public void ThemDanhmuc(string ten, string loaigd)
+        {
+            using (var connection = new SqliteConnection(connect))
+            {
+                connection.Open();
+                var truyvan = connection.CreateCommand();
+                truyvan.CommandText = @"INSERT INTO danhmuc(ten, LoaiGD) VALUES ($name , $GD);";
+                truyvan.Parameters.AddWithValue("$name", ten);
+                truyvan.Parameters.AddWithValue("$GD", loaigd);
+                truyvan.ExecuteNonQuery();
+            }
+        }
+
+        public bool XoaDanhmuc(int Id)
+        {
+            using (var connection = new SqliteConnection(connect))
+            {
+                connection.Open();
+                var check = connection.CreateCommand();
+                check.CommandText = "SELECT COUNT(*) FROM giaodich WHERE IDdanhmuc = @Id";
+                check.Parameters.AddWithValue("@Id", Id);
+                long count = (long)check.ExecuteScalar();
+                if (count > 0) { return false; }
+                var truyvan = connection.CreateCommand();
+
+                truyvan.CommandText = "DELETE FROM danhmuc WHERE Id = @Id";
+                truyvan.Parameters.AddWithValue("@Id", Id);
+
+                truyvan.ExecuteNonQuery();
+                return true;
+            }
+        }
+
+        public void SuaDanhmuc(int Id, string ten, string loaigd)
+        {
+            using (var connection = new SqliteConnection(connect))
+            {
+                connection.Open();
+                var truyvan = connection.CreateCommand();
+                truyvan.CommandText = @"UPDATE danhmuc SET ten = $name, LoaiGD = $GD WHERE Id = $Id;";
+                truyvan.Parameters.AddWithValue("$name", ten);
+                truyvan.Parameters.AddWithValue("$GD", loaigd);
+                truyvan.Parameters.AddWithValue("$Id", Id);
+                truyvan.ExecuteNonQuery();
+            }
+        }
     }
 }

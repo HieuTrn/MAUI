@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MainProject.Pages.DanhMucPage"
+             xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+             x:DataType="viewmodels:DanhMucViewModel"
+             xmlns:models="clr-namespace:MainProject.Models"
+             Background="#EEF0F5"
+             Title="Quan ly Danh Muc">
+    
+    <Grid RowDefinitions="20*, 80*" ColumnDefinitions="70*, 30*">
+        <VerticalStackLayout>  
+        <Entry Placeholder="Nhập tên danh mục"
+                   Text="{Binding Text}"
+                   Margin="10"/>
+            <Entry Placeholder="Nhập loại giao dịch"
+                   Text="{Binding Text1}"
+                   Grid.Column="1"
+                   Margin="10"/>
+        </VerticalStackLayout>
+        <Button Command="{Binding ThemDanhMucCommand}"
+                Grid.Column="1"
+                Margin="20,40"
+                Text="Thêm"
+                Background="Blue"/>
+
+        <CollectionView Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding DanhmucList}">
+
+            <CollectionView.EmptyView>
+                <Label Text="Không có danh mục nào" FontSize="14" TextColor="#94A3B8" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:danhmuc">
+                    
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Xóa" BackgroundColor="#EF4444" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:DanhMucViewModel}}, Path=XoaDanhMucCommand}"
+                                           CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Border BackgroundColor="#90A1B9" Margin="10,6" Padding="5">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="20"/>
+                            </Border.StrokeShape>
+                            <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                <Label Text="{Binding ten}" FontSize="16" Padding="10"/>
+                                <Label Text="{Binding LoaiGD}" FontSize="16" Padding="10"/>
+                            </StackLayout>
+                        </Border>
+                        
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    
+</ContentPage>

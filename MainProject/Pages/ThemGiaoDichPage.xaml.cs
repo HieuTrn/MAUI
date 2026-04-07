@@ -5,6 +5,7 @@ public partial class ThemGiaoDichPage : ContentPage
     public ThemGiaoDichPage()
     {
         InitializeComponent();
+        this.BindingContext = new ViewModels.DanhMucViewModel();
     }
 
     // Nút X → đóng trang, quay lại GiaoDichPage

@@ -13,7 +13,13 @@ namespace MainProject.ViewModels;
 
     [RelayCommand]
     Task Nagivate() => Shell.Current.GoToAsync(nameof(ThongKePage));
-    
+
+    [RelayCommand]
+    async Task NavigateToDanhMuc()
+    {
+        await Shell.Current.GoToAsync(nameof(DanhMucPage));
+    }
+
     [RelayCommand]
     async Task Logout()
     {

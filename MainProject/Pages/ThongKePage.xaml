@@ -8,7 +8,7 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              x:DataType="viewmodels:MainViewModel"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="#D6D3D1">
+             BackgroundColor="#EEF0F5">
 
     <ScrollView>
         <Grid RowDefinitions="Auto, 50, 200, 150, *" RowSpacing="15" Padding="15">

@@ -2,6 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MainProject.Pages.ThemGiaoDichPage"
+             xmlns:local="clr-namespace:MainProject.Models"
+             xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+             xmlns:models="clr-namespace:MainProject.Models"
+             x:DataType="local:danhmuc"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#EEF0F5">
 
@@ -51,107 +55,77 @@
                     </Grid>
                 </Border>
 
-                <!-- DANH MỤC -->
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Danh Mục" FontSize="15" FontAttributes="Bold" TextColor="#1E293B" Margin="4,0"/>
-
-                    <!-- Dropdown chọn danh mục -->
-                    <Border BackgroundColor="White" StrokeThickness="0" Padding="14,13">
-                        <Border.StrokeShape><RoundRectangle CornerRadius="12"/></Border.StrokeShape>
-                        <Grid ColumnDefinitions="*,24">
-                            <Label Text="Chọn danh mục..." FontSize="14" TextColor="#CBD5E1" VerticalOptions="Center"/>
-                            <Label Grid.Column="1" Text="∨" FontSize="14" TextColor="#94A3B8"
-                                   HorizontalOptions="Center" VerticalOptions="Center"/>
-                        </Grid>
-                    </Border>
-
                     <!-- Lưới danh mục nhanh (2 cột) -->
-                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10">
 
-                        <!-- Ăn uống -->
-                        <Border Grid.Row="0" Grid.Column="0" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="12"/></Border.StrokeShape>
-                            <HorizontalStackLayout Spacing="10">
-                                <Border BackgroundColor="#FFA94D" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
-                                    <Border.StrokeShape><Ellipse/></Border.StrokeShape>
-                                    <Label Text="🍴" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                </Border>
-                                <Label Text="Ăn uống" FontSize="13" FontAttributes="Bold" TextColor="#1E293B" VerticalOptions="Center"/>
-                            </HorizontalStackLayout>
-                        </Border>
+                            <!-- DANH MỤC -->
+                <CollectionView Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding DanhmucList}">
 
-                        <!-- Mua sắm -->
+                    <CollectionView.EmptyView>
+                        <Label Text="Không có danh mục nào" FontSize="14" TextColor="#94A3B8" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:danhmuc">
+
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Xóa" BackgroundColor="#EF4444" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:DanhMucViewModel}}, Path=XoaDanhMucCommand}"
+                                           CommandParameter="{Binding .}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <Border BackgroundColor="#90A1B9" Margin="10,6" Padding="5">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20"/>
+                                    </Border.StrokeShape>
+                                    
+                                    <VerticalStackLayout Spacing="10">
+                                <Label Text="Danh Mục" FontSize="15" FontAttributes="Bold" TextColor="#1E293B" Margin="4,0"/>
+                                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+
+                                    <!-- Ăn uống -->
+                                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="12"/>
+                                        </Border.StrokeShape>
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Border BackgroundColor="#FFA94D" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
+                                                <Border.StrokeShape>
+                                                    <Ellipse/>
+                                                </Border.StrokeShape>
+                                                <Label Text="🍴" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </Border>
+                                            <Label Text="{Binding LoaiGD}" FontSize="13" FontAttributes="Bold" TextColor="#1E293B" VerticalOptions="Center"/>
+                                        </HorizontalStackLayout>
+                                    </Border>
+
+                                    <!-- Mua sắm -->
                         <Border Grid.Row="0" Grid.Column="1" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="12"/></Border.StrokeShape>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12"/>
+                            </Border.StrokeShape>
                             <Grid ColumnDefinitions="34,*,Auto">
                                 <Border Grid.Column="0" BackgroundColor="#7C3AED" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
-                                    <Border.StrokeShape><Ellipse/></Border.StrokeShape>
+                                    <Border.StrokeShape>
+                                        <Ellipse/>
+                                    </Border.StrokeShape>
                                     <Label Text="🛒" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 </Border>
                                 <Label Grid.Column="1" Text="Mua sắm" FontSize="13" FontAttributes="Bold"
-                                       TextColor="#1E293B" VerticalOptions="Center" Margin="10,0"/>
-                                <Label Grid.Column="2" Text="›" FontSize="16" TextColor="#94A3B8" VerticalOptions="Center"/>
+                       TextColor="#1E293B" VerticalOptions="Center" Margin="10,0"/>
+                                <Label Grid.Column="2" Text="{Binding ten}" FontSize="16" TextColor="#94A3B8" VerticalOptions="Center"/>
                             </Grid>
                         </Border>
-
-                        <!-- Hóa đơn -->
-                        <Border Grid.Row="1" Grid.Column="0" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="12"/></Border.StrokeShape>
-                            <Grid ColumnDefinitions="34,*,Auto">
-                                <Border Grid.Column="0" BackgroundColor="#38D5BE" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
-                                    <Border.StrokeShape><Ellipse/></Border.StrokeShape>
-                                    <Label Text="🧾" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                </Border>
-                                <Label Grid.Column="1" Text="Hóa đơn" FontSize="13" FontAttributes="Bold"
-                                       TextColor="#1E293B" VerticalOptions="Center" Margin="10,0"/>
-                                <Label Grid.Column="2" Text="›" FontSize="16" TextColor="#94A3B8" VerticalOptions="Center"/>
-                            </Grid>
-                        </Border>
-
-                        <!-- Giải trí -->
-                        <Border Grid.Row="1" Grid.Column="1" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="12"/></Border.StrokeShape>
-                            <Grid ColumnDefinitions="34,*,Auto">
-                                <Border Grid.Column="0" BackgroundColor="#A855F7" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
-                                    <Border.StrokeShape><Ellipse/></Border.StrokeShape>
-                                    <Label Text="🎬" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                </Border>
-                                <Label Grid.Column="1" Text="Giải trí" FontSize="13" FontAttributes="Bold"
-                                       TextColor="#1E293B" VerticalOptions="Center" Margin="10,0"/>
-                                <Label Grid.Column="2" Text="›" FontSize="16" TextColor="#94A3B8" VerticalOptions="Center"/>
-                            </Grid>
-                        </Border>
-
-                        <!-- Di chuyển -->
-                        <Border Grid.Row="2" Grid.Column="0" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="12"/></Border.StrokeShape>
-                            <Grid ColumnDefinitions="34,*,Auto">
-                                <Border Grid.Column="0" BackgroundColor="#FB923C" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
-                                    <Border.StrokeShape><Ellipse/></Border.StrokeShape>
-                                    <Label Text="🚗" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                </Border>
-                                <Label Grid.Column="1" Text="Di chuyển" FontSize="13" FontAttributes="Bold"
-                                       TextColor="#1E293B" VerticalOptions="Center" Margin="10,0"/>
-                                <Label Grid.Column="2" Text="›" FontSize="16" TextColor="#94A3B8" VerticalOptions="Center"/>
-                            </Grid>
-                        </Border>
-
-                        <!-- Tiết kiệm -->
-                        <Border Grid.Row="2" Grid.Column="1" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
-                            <Border.StrokeShape><RoundRectangle CornerRadius="12"/></Border.StrokeShape>
-                            <Grid ColumnDefinitions="34,*,Auto">
-                                <Border Grid.Column="0" BackgroundColor="#F59E0B" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
-                                    <Border.StrokeShape><Ellipse/></Border.StrokeShape>
-                                    <Label Text="🪙" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                </Border>
-                                <Label Grid.Column="1" Text="Tiết kiệm" FontSize="13" FontAttributes="Bold"
-                                       TextColor="#1E293B" VerticalOptions="Center" Margin="10,0"/>
-                                <Label Grid.Column="2" Text="›" FontSize="16" TextColor="#94A3B8" VerticalOptions="Center"/>
-                            </Grid>
-                        </Border>
-
                     </Grid>
-                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                                </Border>
+
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
 
                 <!-- NGÀY -->
                 <VerticalStackLayout Spacing="8">

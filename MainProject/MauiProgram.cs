@@ -22,7 +22,10 @@ namespace MainProject;
             
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainViewModel>();
-            
+            builder.Services.AddTransient<DanhMucViewModel>();
+            builder.Services.AddTransient<DanhMucPage>();
+
+
 
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<ThongKePage>();

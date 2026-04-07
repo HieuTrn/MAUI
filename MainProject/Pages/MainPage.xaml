@@ -4,7 +4,8 @@
              x:Class="MainProject.Pages.MainPage"
              xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
              x:DataType="viewmodels:MainViewModel"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Background="#EEF0F5">
 
     <Grid RowDefinitions="*, Auto">
 
@@ -126,16 +127,21 @@
                     <VerticalStackLayout Grid.Column="0" 
                                        HorizontalOptions="Center" 
                                        Spacing="8">
-                        <Frame HeightRequest="55" 
-                                 WidthRequest="55" 
-                                 CornerRadius="15" 
-                                 BackgroundColor="White" 
-                                 Padding="0">
+                        <Border Stroke="White" Background="White" HeightRequest="55" WidthRequest="55" Padding="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateToDanhMucCommand}"/>
+                            </Border.GestureRecognizers>
+                            
                             <Label Text="☰" 
                                  FontSize="20" 
                                  HorizontalOptions="Center" 
                                  VerticalOptions="Center"/>
-                        </Frame>
+                        </Border>
+                        
                         <Label Text="Danh mục" 
                                  FontSize="12" 
                                  HorizontalOptions="Center" 
