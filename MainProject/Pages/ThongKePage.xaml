@@ -71,14 +71,22 @@
                 </Border>
             </Grid>
 
-            <Border
-                Grid.Row="1"
-                BackgroundColor="#F4F4F5"
-                Stroke="#F4F4F5">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="20" />
-                </Border.StrokeShape>
+            <Border Grid.Row="1" BackgroundColor="Transparent" StrokeThickness="0" Padding="0">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
 
+                    <Button Grid.Column="0" Text="Theo Tháng"
+                            BackgroundColor="{Binding MauNhanThang}" 
+                            TextColor="{Binding MauChuThang}"
+                            CornerRadius="20" FontAttributes="Bold"
+                            Command="{Binding ChonTheoThangCommand}"/>
+
+                    <Button Grid.Column="1" Text="Theo Năm"
+                            BackgroundColor="{Binding MauNhanNam}" 
+                            TextColor="{Binding MauChuNam}"
+                            CornerRadius="20" FontAttributes="Bold"
+                            Command="{Binding ChonTheoNamCommand}"/>
+
+                </Grid>
             </Border>
 
             <Border

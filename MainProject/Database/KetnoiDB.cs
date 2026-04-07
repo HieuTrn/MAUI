@@ -228,5 +228,72 @@ namespace MainProject.Database
                 return ds;
             }
         }
+        // ==============================================================
+        // CÁC HÀM PHỤC VỤ CHO TRANG THỐNG KÊ (BIỂU ĐỒ)
+        // ==============================================================
+
+        // Class phụ trợ chứa dữ liệu vẽ biểu đồ
+        public class ChartDataRow
+        {
+            public string TenDanhMuc { get; set; }
+            public double SoTien { get; set; }
+            public DateTime Ngay { get; set; }
+        }
+
+        // Lấy tất cả giao dịch Chi Tiêu để vẽ biểu đồ
+        public List<ChartDataRow> LayDuLieuBieuDo(int idTk)
+        {
+            var ds = new List<ChartDataRow>();
+            using (var connection = new SqliteConnection(connect))
+            {
+                connection.Open();
+                var cmd = connection.CreateCommand();
+                // Nối bảng giao dịch và danh mục để lấy Tên Danh Mục
+                cmd.CommandText = @"
+                    SELECT d.ten, g.sotien, g.ngay 
+                    FROM giaodich g
+                    INNER JOIN danhmuc d ON g.IDdanhmuc = d.Id
+                    WHERE g.IDtk = $idtk AND g.LoaiGD = 'Chi Tiêu'";
+
+                cmd.Parameters.AddWithValue("$idtk", idTk);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ds.Add(new ChartDataRow
+                        {
+                            TenDanhMuc = reader.GetString(0),
+                            SoTien = reader.GetDouble(1),
+                            Ngay = DateTime.Parse(reader.GetString(2))
+                        });
+                    }
+                }
+            }
+            return ds;
+        }
+
+        // Tính tổng tiền Thu và Chi của tài khoản đang đăng nhập
+        public void LayTongThuChi(int idTk, out double tongThu, out double tongChi)
+        {
+            tongThu = 0;
+            tongChi = 0;
+            using (var connection = new SqliteConnection(connect))
+            {
+                connection.Open();
+
+                var cmdThu = connection.CreateCommand();
+                cmdThu.CommandText = "SELECT SUM(sotien) FROM giaodich WHERE IDtk = $idtk AND LoaiGD = 'Thu Nhập'";
+                cmdThu.Parameters.AddWithValue("$idtk", idTk);
+                var resThu = cmdThu.ExecuteScalar();
+                if (resThu != DBNull.Value && resThu != null) tongThu = Convert.ToDouble(resThu);
+
+                var cmdChi = connection.CreateCommand();
+                cmdChi.CommandText = "SELECT SUM(sotien) FROM giaodich WHERE IDtk = $idtk AND LoaiGD = 'Chi Tiêu'";
+                cmdChi.Parameters.AddWithValue("$idtk", idTk);
+                var resChi = cmdChi.ExecuteScalar();
+                if (resChi != DBNull.Value && resChi != null) tongChi = Convert.ToDouble(resChi);
+            }
+        }
     }
 }
