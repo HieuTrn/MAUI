@@ -32,4 +32,17 @@ namespace MainProject.Models
         public string LoaiGD { get; set; } 
         
     }
+    public class GiaoDichDisplay
+    {
+        public int Id { get; set; }
+        public double SoTien { get; set; }
+        public string LoaiGD { get; set; } 
+        public string TenDanhMuc { get; set; } 
+        public string Ngay { get; set; }
+        public string GhiChu { get; set; }
+
+        
+        public Color MauSoTien => LoaiGD == "Thu" ? Colors.Green : Colors.Red;
+        public string DinhDangSoTien => LoaiGD == "Thu" ? $"+{SoTien:N0} đ" : $"-{SoTien:N0} đ";
+    }
 }

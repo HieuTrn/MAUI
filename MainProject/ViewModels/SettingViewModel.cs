@@ -35,7 +35,7 @@ namespace MainProject.ViewModels
         [RelayCommand]
         async Task Moqldm()
         {
-            await Shell.Current.GoToAsync(nameof(Quanlidanhmuc));
+            await Shell.Current.GoToAsync(nameof(DanhMucPage));
         }
         [RelayCommand]
         async Task themtk()

@@ -1,16 +1,19 @@
 ﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using MainProject.Models;
 using SkiaSharp;
 using System.Collections.ObjectModel;
 
 namespace MainProject.ViewModels
 {
-    public class ChartViewModel
+    public partial  class ChartViewModel : MainViewModel
 
     {
         public ObservableCollection<ISeries> Bieudo { get; set; }
+        
 
         public ChartViewModel()
         {

@@ -11,7 +11,7 @@
 
     <Grid RowDefinitions="56,*">
 
-        <!-- HEADER: nút X + tiêu đề -->
+        
         <Grid Grid.Row="0" ColumnDefinitions="56,*,56" BackgroundColor="#EEF0F5" Padding="8,0">
             <Border Grid.Column="0" BackgroundColor="Transparent" StrokeThickness="0">
                 <Border.GestureRecognizers>
@@ -25,11 +25,11 @@
                    HorizontalOptions="Center" VerticalOptions="Center"/>
         </Grid>
 
-        <!-- NỘI DUNG CUỘN -->
+        
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Padding="15,8" Spacing="14">
 
-                <!-- TOGGLE: CHI TIÊU / THU NHẬP -->
+               
                 <Grid ColumnDefinitions="*,*" ColumnSpacing="0">
                     <Border Grid.Column="0" BackgroundColor="#FFA94D" StrokeThickness="0" Padding="0,14">
                         <Border.StrokeShape><RoundRectangle CornerRadius="12,0,0,12"/></Border.StrokeShape>
@@ -43,7 +43,7 @@
                     </Border>
                 </Grid>
 
-                <!-- SỐ TIỀN -->
+               
                 <Border BackgroundColor="White" StrokeThickness="0" Padding="16,14">
                     <Border.StrokeShape><RoundRectangle CornerRadius="14"/></Border.StrokeShape>
                     <Grid ColumnDefinitions="32,*,Auto">
@@ -55,9 +55,7 @@
                     </Grid>
                 </Border>
 
-                    <!-- Lưới danh mục nhanh (2 cột) -->
-
-                            <!-- DANH MỤC -->
+                   
                 <CollectionView Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding DanhmucList}">
 
                     <CollectionView.EmptyView>
@@ -84,7 +82,7 @@
                                 <Label Text="Danh Mục" FontSize="15" FontAttributes="Bold" TextColor="#1E293B" Margin="4,0"/>
                                 <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10">
 
-                                    <!-- Ăn uống -->
+                                    
                                     <Border Grid.Row="0" Grid.Column="0" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
                                         <Border.StrokeShape>
                                             <RoundRectangle CornerRadius="12"/>
@@ -100,7 +98,7 @@
                                         </HorizontalStackLayout>
                                     </Border>
 
-                                    <!-- Mua sắm -->
+                                    
                         <Border Grid.Row="0" Grid.Column="1" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="12"/>
@@ -112,8 +110,7 @@
                                     </Border.StrokeShape>
                                     <Label Text="🛒" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 </Border>
-                                <Label Grid.Column="1" Text="Mua sắm" FontSize="13" FontAttributes="Bold"
-                       TextColor="#1E293B" VerticalOptions="Center" Margin="10,0"/>
+                                
                                 <Label Grid.Column="2" Text="{Binding ten}" FontSize="16" TextColor="#94A3B8" VerticalOptions="Center"/>
                             </Grid>
                         </Border>
@@ -127,7 +124,7 @@
                 </CollectionView>
 
 
-                <!-- NGÀY -->
+                
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Ngày" FontSize="15" FontAttributes="Bold" TextColor="#1E293B" Margin="4,0"/>
                     <Border BackgroundColor="White" StrokeThickness="0" Padding="14,14">
@@ -142,7 +139,7 @@
                     </Border>
                 </VerticalStackLayout>
 
-                <!-- GHI CHÚ -->
+                
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Ghi Chú" FontSize="15" FontAttributes="Bold" TextColor="#1E293B" Margin="4,0"/>
                     <Border BackgroundColor="White" StrokeThickness="0" Padding="14,6">
@@ -156,7 +153,7 @@
                     </Border>
                 </VerticalStackLayout>
 
-                <!-- NÚT LƯU -->
+                
                 <Border BackgroundColor="#38D5BE" StrokeThickness="0" Padding="0,16" Margin="0,4,0,20">
                     <Border.StrokeShape><RoundRectangle CornerRadius="16"/></Border.StrokeShape>
                     <Border.GestureRecognizers>
