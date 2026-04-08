@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MainProject.Pages.GiaoDichPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MainProject.Models"
+    xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+    BackgroundColor="#F3F4F6"
+    Shell.NavBarIsVisible="False">
+
+    <Grid>
+        <VerticalStackLayout Margin="15" Spacing="15">
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="Giao Dịch"
+                TextColor="#1E293B" />
+
+            <HorizontalStackLayout HorizontalOptions="Fill" Spacing="10">
+                <Frame
+                    Padding="15"
+                    BackgroundColor="#38D5BE"
+                    CornerRadius="12"
+                    HasShadow="False"
+                    WidthRequest="170">
+                    <VerticalStackLayout Spacing="5">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="↑ Thu Nhập"
+                            TextColor="White" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding Tongthu, StringFormat='{0:N0} đ'}"
+                            TextColor="White" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame
+                    Padding="15"
+                    BackgroundColor="#FF6467"
+                    CornerRadius="12"
+                    HasShadow="False"
+                    WidthRequest="170">
+                    <VerticalStackLayout Spacing="5">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            Text="↓ Chi Tiêu"
+                            TextColor="White" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding Tongchi, StringFormat='{0:N0} đ'}"
+                            TextColor="White" />
+                    </VerticalStackLayout>
+                </Frame>
+            </HorizontalStackLayout>
+
+            <Label
+                Margin="0,10,0,0"
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Lịch sử giao dịch"
+                TextColor="#333" />
+
+            <CollectionView ItemsSource="{Binding DanhSachGiaoDich}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:GiaoDichDisplay">
+
+                        <Frame
+                            Margin="0,0,0,10"
+                            Padding="15"
+                            BorderColor="#E0E0E0"
+                            CornerRadius="8"
+                            HasShadow="False">
+
+                            <HorizontalStackLayout Spacing="15">
+
+                                <Label
+                                    FontSize="24"
+                                    Text="🏷️"
+                                    VerticalOptions="Center" />
+
+                                <VerticalStackLayout VerticalOptions="Center" WidthRequest="150">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding TenDanhMuc}"
+                                        TextColor="Black" />
+                                    <Label
+                                        FontSize="12"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding GhiChu}"
+                                        TextColor="Gray" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout HorizontalOptions="End" VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding DinhDangSoTien}"
+                                        TextColor="{Binding MauSoTien}" />
+                                    <Label
+                                        FontSize="11"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Ngay}"
+                                        TextColor="Gray" />
+                                </VerticalStackLayout>
+
+                            </HorizontalStackLayout>
+                        </Frame>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+
+        <Frame
+            Margin="0,0,20,20"
+            Padding="0"
+            BackgroundColor="#38D5BE"
+            CornerRadius="28"
+            HasShadow="True"
+            HeightRequest="56"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            WidthRequest="56">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnThemGiaoDichClicked" />
+            </Frame.GestureRecognizers>
+            <Label
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="+"
+                TextColor="White"
+                VerticalOptions="Center" />
+        </Frame>
+
+    </Grid>
+</ContentPage>

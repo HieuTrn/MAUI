@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MainProject.Pages.ThongKePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:database="clr-namespace:MainProject.Database"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+    xmlns:models="clr-namespace:MainProject.Models"
+    xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+    Title="ThongKePage"
+    x:DataType="viewmodels:MainViewModel"
+    BackgroundColor="#D6D3D1"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <Grid
+            Padding="15"
+            RowDefinitions="Auto, 50, 250, 330, *"
+            RowSpacing="15">
+
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+
+                <Border
+                    Grid.Column="0"
+                    BackgroundColor="#38D5BE"
+                    HeightRequest="80"
+                    Stroke="#38D5BE">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            Text="Thu Nhập"
+                            TextColor="White" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="{Binding Tongthu, StringFormat='{0:N0} đ'}"
+                            TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border
+                    Grid.Column="1"
+                    BackgroundColor="#FF6467"
+                    HeightRequest="80"
+                    Stroke="#FF6467">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20" />
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            Text="Chi Tiêu"
+                            TextColor="White" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="{Binding Tongchi, StringFormat='{0:N0} đ'}"
+                            TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Border Grid.Row="1" BackgroundColor="Transparent" StrokeThickness="0" Padding="0">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+
+                    <Button Grid.Column="0" Text="Theo Tháng"
+                            BackgroundColor="{Binding MauNhanThang}" 
+                            TextColor="{Binding MauChuThang}"
+                            CornerRadius="20" FontAttributes="Bold"
+                            Command="{Binding ChonTheoThangCommand}"/>
+
+                    <Button Grid.Column="1" Text="Theo Năm"
+                            BackgroundColor="{Binding MauNhanNam}" 
+                            TextColor="{Binding MauChuNam}"
+                            CornerRadius="20" FontAttributes="Bold"
+                            Command="{Binding ChonTheoNamCommand}"/>
+
+                </Grid>
+            </Border>
+
+            <Border
+                Grid.Row="2"
+                BackgroundColor="#F4F4F5"
+                Stroke="#F4F4F5">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Margin="0,0,0,10"
+                        Padding="10"
+                        FontAttributes="Bold"
+                        Text="Thống Kê Chi Tiêu" />
+
+                    <lvc:PieChart
+                        Grid.Row="1"
+                        BackgroundColor="#F8F9FA"
+                        HorizontalOptions="Fill"
+                        LegendPosition="Right"
+                        Series="{Binding Bieudotron}"
+                        VerticalOptions="Fill" />
+
+                </Grid>
+            </Border>
+
+            <Border
+                Grid.Row="3"
+                BackgroundColor="#F4F4F5"
+                Stroke="#F4F4F5">
+                
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <Grid RowDefinitions="Auto , *">
+                    <Label
+                        Padding="10"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="Chi tiêu theo thời gian"
+                        TextColor="Black" />
+                    <lvc:CartesianChart
+                        Grid.Row="1"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Fill"
+                        LegendPosition="Bottom"
+                        Series="{Binding Bieudocot}"
+                        VerticalOptions="Fill"
+                        XAxes="{Binding X}"
+                        YAxes="{Binding Y}" />
+                </Grid>
+
+
+            </Border>
+
+            <Border
+                Grid.Row="4"
+                BackgroundColor="#F4F4F5"
+                Stroke="#F4F4F5">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+
+                <Grid
+                    Padding="15"
+                    RowDefinitions="Auto, *"
+                    RowSpacing="20">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="Hạng mục"
+                            TextColor="Black"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="Số tiền chi tiêu"
+                            TextColor="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding DanhSachGiaoDich}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:GiaoDichDisplay">
+
+                                <Border
+                                    Margin="0,0,0,10"
+                                    Padding="15"
+                                    BackgroundColor="White"
+                                    Stroke="#E0E0E0"
+                                    StrokeShape="RoundRectangle 10"
+                                    StrokeThickness="1">
+                                    <Grid ColumnDefinitions="Auto, *, Auto">
+
+                                        <Border
+                                            Grid.Column="0"
+                                            BackgroundColor="#F0F4F8"
+                                            HeightRequest="40"
+                                            StrokeShape="RoundRectangle 20"
+                                            StrokeThickness="0"
+                                            WidthRequest="40">
+                                            <Label
+                                                HorizontalOptions="Center"
+                                                Text="🏷️"
+                                                VerticalOptions="Center" />
+                                        </Border>
+
+                                        <VerticalStackLayout
+                                            Grid.Column="1"
+                                            Margin="15,0,0,0"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                Text="{Binding TenDanhMuc}"
+                                                TextColor="#333" />
+                                            <Label
+                                                FontSize="12"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="1"
+                                                Text="{Binding GhiChu}"
+                                                TextColor="Gray" />
+                                        </VerticalStackLayout>
+
+                                        <VerticalStackLayout
+                                            Grid.Column="2"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                Text="{Binding DinhDangSoTien}"
+                                                TextColor="{Binding MauSoTien}" />
+                                            <Label
+                                                FontSize="11"
+                                                HorizontalOptions="End"
+                                                Text="{Binding Ngay}"
+                                                TextColor="#888888" />
+                                        </VerticalStackLayout>
+
+                                    </Grid>
+                                </Border>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

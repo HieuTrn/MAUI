@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MainProject.Pages.DanhMucPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MainProject.Models"
+    xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+    Title="Quan ly Danh Muc"
+    x:DataType="viewmodels:DanhMucViewModel"
+    Shell.BackgroundColor="White"
+    Background="#45556C">
+
+    <Grid ColumnDefinitions="70*, 30*" RowDefinitions="Auto, *">
+        <VerticalStackLayout
+            Grid.Column="0"
+            Margin="10,20,10,10"
+            Spacing="15">
+
+            <Entry Placeholder="Nhập tên danh mục" 
+                   Text="{Binding Text}" 
+                   TextColor="Black"
+                   Background="White"/>
+
+            <Picker
+                Title="Chọn loại danh mục"
+                Background="White"
+                ItemsSource="{Binding DanhSachLoaiGD}"
+                SelectedItem="{Binding LoaiGDDuocChon}"
+                TextColor="Black"
+                TitleColor="White" />
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Column="1">
+        <Button
+            Margin="20,15"
+            Background="#94A3B8"
+            Command="{Binding ThemDanhMucCommand}"
+            Text="Thêm"/>
+        <Button
+            Margin="20,15"
+            Background="#EF4444"
+            Command="{Binding XoaDanhMucDangChonCommand}"
+            Text="Xóa"
+            TextColor="White"/>
+        </VerticalStackLayout>
+
+        <CollectionView
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            SelectionMode="Single"
+            SelectedItem="{Binding DanhMucDuocChon}"
+            ItemsSource="{Binding DanhmucList}">
+
+            <CollectionView.EmptyView>
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="Không có danh mục nào"
+                    TextColor="#94A3B8"
+                    VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:danhmuc">
+
+                        <Border
+                            Margin="10,6"
+                            Padding="5"
+                            BackgroundColor="#90A1B9">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="20" />
+                            </Border.StrokeShape>
+                            <StackLayout
+                                Padding="10"
+                                Orientation="Horizontal"
+                                Spacing="10">
+                                <Label
+                                    Padding="10"
+                                    FontSize="16"
+                                    Text="{Binding ten}" />
+                                <Label
+                                    Padding="10"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    Text="{Binding LoaiGD}"
+                                    VerticalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding LoaiGD}"
+                                            TargetType="Label"
+                                            Value="Thu Nhập">
+                                            <Setter Property="TextColor" Value="#16A34A" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            Binding="{Binding LoaiGD}"
+                                            TargetType="Label"
+                                            Value="Chi Tiêu">
+                                            <Setter Property="TextColor" Value="#DC2626" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </StackLayout>
+                        </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

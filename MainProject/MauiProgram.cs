@@ -1,4 +1,7 @@
-﻿using MainProject.ViewModels;
+﻿using LiveChartsCore.SkiaSharpView.Maui;
+using MainProject.Pages;
+using MainProject.ViewModels;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace MainProject;
 
@@ -9,17 +12,28 @@ namespace MainProject;
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseSkiaSharp()
+                .UseLiveCharts()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             
-            builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<MainViewModel>();
-
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<DanhMucPage>();
+            builder .Services.AddTransient<DanhMucViewModel>();
+            builder.Services.AddTransient<GiaoDichPage>();
             builder.Services.AddTransient<LoginPage>();
-
-            return builder.Build();
+            builder.Services.AddTransient<ThongKePage>();
+            builder.Services.AddTransient<ChartViewModel>();
+            builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<SettingPage>();
+            builder.Services.AddTransient<SettingViewModel>();
+            builder.Services.AddTransient<DanhMucViewModel>();
+            builder.Services.AddTransient<DanhMucPage>();
+        return builder.Build();
         }
     }
