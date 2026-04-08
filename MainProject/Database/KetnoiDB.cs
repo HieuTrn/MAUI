@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Text;
+using MainProject.Models;
 
 namespace MainProject.Database
 {
@@ -20,12 +21,7 @@ namespace MainProject.Database
         public KetnoiDB()
         {
             connect = $"Data Source={dbpath}";
-
-            Debug.WriteLine("==================================================");
-            Debug.WriteLine(" ĐƯỜNG DẪN DATABASE FILE SQLite NẰM Ở ĐÂY: ");// lấy đường dẫn db ra để mở lên xem có chạy được k
-            Debug.WriteLine(dbpath);                                       // nhớ xoá đi nếu cbi nộp
-            Debug.WriteLine("==================================================");
-
+            Taodb();
         }
 
         public void Taodb()
@@ -230,19 +226,7 @@ namespace MainProject.Database
                 return ds;
             }
         }
-        // ==============================================================
-        // CÁC HÀM PHỤC VỤ CHO TRANG THỐNG KÊ (BIỂU ĐỒ)
-        // ==============================================================
 
-        // Class phụ trợ chứa dữ liệu vẽ biểu đồ
-        public class ChartDataRow
-        {
-            public string TenDanhMuc { get; set; }
-            public double SoTien { get; set; }
-            public DateTime Ngay { get; set; }
-        }
-
-        // Lấy tất cả giao dịch Chi Tiêu để vẽ biểu đồ
         public List<ChartDataRow> LayDuLieuBieuDo(int idTk)
         {
             var ds = new List<ChartDataRow>();
@@ -250,7 +234,6 @@ namespace MainProject.Database
             {
                 connection.Open();
                 var cmd = connection.CreateCommand();
-                // Nối bảng giao dịch và danh mục để lấy Tên Danh Mục
                 cmd.CommandText = @"
                     SELECT d.ten, g.sotien, g.ngay 
                     FROM giaodich g
@@ -275,7 +258,6 @@ namespace MainProject.Database
             return ds;
         }
 
-        // Tính tổng tiền Thu và Chi của tài khoản đang đăng nhập
         public void LayTongThuChi(int idTk, out double tongThu, out double tongChi)
         {
             tongThu = 0;

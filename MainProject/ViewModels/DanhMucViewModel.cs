@@ -40,7 +40,7 @@ public partial class DanhMucViewModel : ObservableObject
         if (xoaThanhCong)
         {
             DanhmucList.Remove(DanhMucDuocChon);
-            DanhMucDuocChon = null; // Xóa xong thì reset trạng thái chọn
+            DanhMucDuocChon = null; 
         }
         else
         {

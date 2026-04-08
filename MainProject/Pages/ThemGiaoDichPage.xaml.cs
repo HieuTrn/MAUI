@@ -30,11 +30,10 @@ public partial class ThemGiaoDichPage : ContentPage
         {
             _db.Taodb();
             var dsDb = _db.layDanhmuc();
-            var dsHienThi = new ObservableCollection<danhmuc>(); // Sử dụng trực tiếp model danhmuc
+            var dsHienThi = new ObservableCollection<danhmuc>();
 
             foreach (var dm in dsDb)
             {
-                // Chỉ hiển thị danh mục thuộc đúng Loại Giao Dịch đang chọn
                 if (dm.LoaiGD == _loaiGiaoDich)
                 {
                     dsHienThi.Add(dm);
@@ -42,7 +41,7 @@ public partial class ThemGiaoDichPage : ContentPage
             }
 
             CvDanhCach.ItemsSource = dsHienThi;
-            _idDanhMucDuocChon = null; // Bỏ chọn khi load lại list
+            _idDanhMucDuocChon = null;
         }
         catch
         {

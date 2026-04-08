@@ -40,8 +40,14 @@ namespace MainProject.Models
         public string Ngay { get; set; }
         public string GhiChu { get; set; }
 
-        
         public Color MauSoTien => LoaiGD == "Thu Nhập" ? Colors.Green : Colors.Red;
         public string DinhDangSoTien => LoaiGD == "Thu Nhập" ? $"+{SoTien:N0} đ" : $"-{SoTien:N0} đ";
+    }
+
+    public class ChartDataRow
+    {
+        public string TenDanhMuc { get; set; }
+        public double SoTien { get; set; }
+        public DateTime Ngay { get; set; }
     }
 }

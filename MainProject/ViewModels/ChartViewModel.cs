@@ -17,11 +17,6 @@ namespace MainProject.ViewModels;
 public partial class ChartViewModel : MainViewModel
 {
     private KetnoiDB _db;
-
-    // ==========================================
-    // KHAI BÁO BIẾN GIAO DIỆN CHUẨN (Khắc phục lỗi CS0103)
-    // Dùng SetProperty để tự động cập nhật UI mà không sợ lỗi sinh code
-    // ==========================================
     private bool _isTheoThang = true;
     public bool IsTheoThang
     {
@@ -78,9 +73,6 @@ public partial class ChartViewModel : MainViewModel
         set => SetProperty(ref _danhSachGiaoDich, value);
     }
 
-    // ==========================================
-    // MÀU SẮC NÚT BẤM
-    // ==========================================
     public Color MauNhanThang => IsTheoThang ? Color.FromArgb("#38D5BE") : Colors.White;
     public Color MauChuThang => IsTheoThang ? Colors.White : Color.FromArgb("#64748B");
     public Color MauNhanNam => !IsTheoThang ? Color.FromArgb("#38D5BE") : Colors.White;
@@ -93,9 +85,6 @@ public partial class ChartViewModel : MainViewModel
         LoadData();
     }
 
-    // ==========================================
-    // LỆNH KHI BẤM NÚT "THEO THÁNG" / "THEO NĂM"
-    // ==========================================
     [RelayCommand]
     private void ChonTheoThang()
     {
@@ -112,7 +101,6 @@ public partial class ChartViewModel : MainViewModel
         LoadData();
     }
 
-    // Hàm gọi giao diện cập nhật màu nút
     private void CapNhatUI()
     {
         OnPropertyChanged(nameof(MauNhanThang));
@@ -121,9 +109,6 @@ public partial class ChartViewModel : MainViewModel
         OnPropertyChanged(nameof(MauChuNam));
     }
 
-    // ==========================================
-    // HÀM LỌC VÀ VẼ BIỂU ĐỒ
-    // ==========================================
     public void LoadData()
     {
         int userId = Preferences.Default.Get("UserID", 1);
@@ -133,7 +118,7 @@ public partial class ChartViewModel : MainViewModel
         var allData = _db.LayDuLieuBieuDo(userId);
         var allGiaoDich = _db.hthigd(username);
 
-        var filteredData = new List<KetnoiDB.ChartDataRow>();
+        var filteredData = new List<ChartDataRow>();
         var filteredGiaoDich = new ObservableCollection<GiaoDichDisplay>();
         double thu = 0, chi = 0;
 
