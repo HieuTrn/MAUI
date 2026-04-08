@@ -67,61 +67,28 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:danhmuc">
 
-                            <SwipeView>
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem Text="Xóa" BackgroundColor="#EF4444" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:DanhMucViewModel}}, Path=XoaDanhMucCommand}"
-                                           CommandParameter="{Binding .}"/>
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
-
-                                <Border BackgroundColor="#90A1B9" Margin="10,6" Padding="5">
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="20"/>
-                                    </Border.StrokeShape>
-                                    
-                                    <VerticalStackLayout Spacing="10">
-                                <Label Text="Danh Mục" FontSize="15" FontAttributes="Bold" TextColor="#1E293B" Margin="4,0"/>
-                                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10">
-
-                                    <!-- Ăn uống -->
-                                    <Border Grid.Row="0" Grid.Column="0" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
-                                        <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="12"/>
-                                        </Border.StrokeShape>
-                                        <HorizontalStackLayout Spacing="10">
-                                            <Border BackgroundColor="#FFA94D" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
-                                                <Border.StrokeShape>
-                                                    <Ellipse/>
-                                                </Border.StrokeShape>
-                                                <Label Text="🍴" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            </Border>
-                                            <Label Text="{Binding LoaiGD}" FontSize="13" FontAttributes="Bold" TextColor="#1E293B" VerticalOptions="Center"/>
-                                        </HorizontalStackLayout>
-                                    </Border>
-
-                                    <!-- Mua sắm -->
-                        <Border Grid.Row="0" Grid.Column="1" BackgroundColor="White" StrokeThickness="0" Padding="12,12">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="12"/>
-                            </Border.StrokeShape>
-                            <Grid ColumnDefinitions="34,*,Auto">
-                                <Border Grid.Column="0" BackgroundColor="#7C3AED" StrokeThickness="0" WidthRequest="34" HeightRequest="34">
-                                    <Border.StrokeShape>
-                                        <Ellipse/>
-                                    </Border.StrokeShape>
-                                    <Label Text="🛒" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                </Border>
-                                <Label Grid.Column="1" Text="Mua sắm" FontSize="13" FontAttributes="Bold"
-                       TextColor="#1E293B" VerticalOptions="Center" Margin="10,0"/>
-                                <Label Grid.Column="2" Text="{Binding ten}" FontSize="16" TextColor="#94A3B8" VerticalOptions="Center"/>
-                            </Grid>
-                        </Border>
-                    </Grid>
-                            </VerticalStackLayout>
-                                </Border>
-
-                            </SwipeView>
+                            <Border BackgroundColor="#90A1B9" Margin="10,6" Padding="5">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20"/>
+                                </Border.StrokeShape>
+                                <StackLayout Orientation="Horizontal" Spacing="10" Padding="10">
+                                    <Label Text="{Binding ten}" FontSize="16" Padding="10"/>
+                                    <Label Text="{Binding LoaiGD}" 
+                                            FontSize="14" 
+                                            FontAttributes="Bold" 
+                                            Padding="10"
+                                            VerticalOptions="Center">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding LoaiGD}" Value="Thu Nhập">
+                                                <Setter Property="TextColor" Value="#16A34A" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding LoaiGD}" Value="Chi Tiêu">
+                                                <Setter Property="TextColor" Value="#DC2626" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
