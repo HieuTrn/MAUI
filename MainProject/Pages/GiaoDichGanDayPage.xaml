@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MainProject.GiaoDichGanDayPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MainProject.Models"
+    xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
+    Title="Lịch Sử Giao Dịch Gần Đây"
+    x:DataType="viewmodels:MainViewModel"
+    Background="#D6D3D1">
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="10">
+            <Label
+                Margin="0,10"
+                FontAttributes="Bold"
+                Text="Tháng x, xxxx" />
+
+            <CollectionView ItemsSource="{Binding DanhSachGiaoDich}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:GiaoDichDisplay">
+
+                        <Border
+                            Margin="0,0,0,10"
+                            Padding="15"
+                            BackgroundColor="White"
+                            Stroke="#E0E0E0"
+                            StrokeShape="RoundRectangle 10"
+                            StrokeThickness="1">
+
+                            <Grid ColumnDefinitions="Auto, *, Auto">
+
+                                <Border
+                                    Grid.Column="0"
+                                    BackgroundColor="#F0F4F8"
+                                    HeightRequest="40"
+                                    StrokeShape="RoundRectangle 20"
+                                    StrokeThickness="0"
+                                    WidthRequest="40">
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        Text="🏷️"
+                                        VerticalOptions="Center" />
+                                </Border>
+
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    Margin="15,0,0,0"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding TenDanhMuc}"
+                                        TextColor="#333" />
+                                    <Label
+                                        FontSize="12"
+                                        LineBreakMode="TailTruncation"
+                                        MaxLines="1"
+                                        Text="{Binding GhiChu}"
+                                        TextColor="Gray" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding DinhDangSoTien}"
+                                        TextColor="{Binding MauSoTien}" />
+
+                                    <Label
+                                        FontSize="11"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Ngay}"
+                                        TextColor="#888888" />
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace MainProject.ViewModels
 {
-    public partial class SettingViewModel : ObservableObject
+    public partial class SettingViewModel : MainViewModel
     {
         [ObservableProperty]
         private string _user;
@@ -25,6 +25,7 @@ namespace MainProject.ViewModels
             if (ok)
             {
                 Preferences.Default.Remove("ngdunght");
+                DanhSachGiaoDich.Clear();
                 Application.Current.MainPage = new NavigationPage(new LoginPage(new LoginViewModel()));
             }
         }
@@ -35,7 +36,7 @@ namespace MainProject.ViewModels
         [RelayCommand]
         async Task Moqldm()
         {
-            await Shell.Current.GoToAsync(nameof(Quanlidanhmuc));
+            await Shell.Current.GoToAsync(nameof(DanhMucPage));
         }
         [RelayCommand]
         async Task themtk()
