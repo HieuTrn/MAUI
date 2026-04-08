@@ -22,7 +22,7 @@
                 <Label
                     FontAttributes="Bold"
                     FontSize="Medium"
-                    Text="CHAO MUNG DEN VOI UNG DUNG CHI TIEU HOANGPHANMONEY"
+                    Text="CHÀO MỪNG ĐẾN VỚI ỨNG DỤNG QUẢN LÝ CHI TIÊU"
                     TextColor="Black" />
 
                 <Label

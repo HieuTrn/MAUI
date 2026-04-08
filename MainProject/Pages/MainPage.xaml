@@ -176,7 +176,7 @@
                             <Label
                                 FontSize="20"
                                 HorizontalOptions="Center"
-                                Text="☰"
+                                Text="🗂️"
                                 VerticalOptions="Center" />
                         </Border>
                         <Label

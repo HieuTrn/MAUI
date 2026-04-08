@@ -7,7 +7,8 @@
     xmlns:viewmodels="clr-namespace:MainProject.ViewModels"
     Title="Quan ly Danh Muc"
     x:DataType="viewmodels:DanhMucViewModel"
-    Background="#D6D3D1">
+    Shell.BackgroundColor="White"
+    Background="#45556C">
 
     <Grid ColumnDefinitions="70*, 30*" RowDefinitions="Auto, *">
         <VerticalStackLayout
@@ -15,27 +16,40 @@
             Margin="10,20,10,10"
             Spacing="15">
 
-            <Entry Placeholder="Nhập tên danh mục" Text="{Binding Text}" TextColor="Black" />
+            <Entry Placeholder="Nhập tên danh mục" 
+                   Text="{Binding Text}" 
+                   TextColor="Black"
+                   Background="White"/>
 
             <Picker
                 Title="Chọn loại danh mục"
-                Background="#94A3B8"
+                Background="White"
                 ItemsSource="{Binding DanhSachLoaiGD}"
                 SelectedItem="{Binding LoaiGDDuocChon}"
                 TextColor="Black"
-                TitleColor="Black" />
+                TitleColor="White" />
 
         </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Column="1">
         <Button
-            Grid.Column="1"
-            Margin="20,40"
+            Margin="20,15"
             Background="#94A3B8"
             Command="{Binding ThemDanhMucCommand}"
-            Text="Thêm" />
+            Text="Thêm"/>
+        <Button
+            Margin="20,15"
+            Background="#EF4444"
+            Command="{Binding XoaDanhMucDangChonCommand}"
+            Text="Xóa"
+            TextColor="White"/>
+        </VerticalStackLayout>
 
         <CollectionView
             Grid.Row="1"
             Grid.ColumnSpan="2"
+            SelectionMode="Single"
+            SelectedItem="{Binding DanhMucDuocChon}"
             ItemsSource="{Binding DanhmucList}">
 
             <CollectionView.EmptyView>
@@ -49,17 +63,6 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:danhmuc">
-
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    BackgroundColor="#EF4444"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:DanhMucViewModel}}, Path=XoaDanhMucCommand}"
-                                    CommandParameter="{Binding .}"
-                                    Text="Xóa" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
 
                         <Border
                             Margin="10,6"
@@ -100,7 +103,6 @@
                             </StackLayout>
                         </Border>
 
-                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
