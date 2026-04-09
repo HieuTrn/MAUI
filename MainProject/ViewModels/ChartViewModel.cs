@@ -18,63 +18,17 @@ public partial class ChartViewModel : MainViewModel
 {
     private KetnoiDB _db;
 
-   
-    private bool _isTheoThang = true;
-    public bool IsTheoThang
-    {
-        get => _isTheoThang;
-        set => SetProperty(ref _isTheoThang, value);
-    }
+    // 🔥 GỌN LẠI TOÀN BỘ PROPERTY
+    [ObservableProperty] private bool isTheoThang = true;
+    [ObservableProperty] private ObservableCollection<ISeries> bieudotron;
+    [ObservableProperty] private ObservableCollection<ISeries> bieudocot;
+    [ObservableProperty] private Axis[] x;
+    [ObservableProperty] private Axis[] y;
+    [ObservableProperty] private double tongthu;
+    [ObservableProperty] private double tongchi;
+    [ObservableProperty] private ObservableCollection<GiaoDichDisplay> danhSachGiaoDich;
 
-    private ObservableCollection<ISeries> _bieudotron;
-    public ObservableCollection<ISeries> Bieudotron
-    {
-        get => _bieudotron;
-        set => SetProperty(ref _bieudotron, value);
-    }
-
-    private ObservableCollection<ISeries> _bieudocot;
-    public ObservableCollection<ISeries> Bieudocot
-    {
-        get => _bieudocot;
-        set => SetProperty(ref _bieudocot, value);
-    }
-
-    private Axis[] _x;
-    public Axis[] X
-    {
-        get => _x;
-        set => SetProperty(ref _x, value);
-    }
-
-    private Axis[] _y;
-    public Axis[] Y
-    {
-        get => _y;
-        set => SetProperty(ref _y, value);
-    }
-
-    private double _tongthu;
-    public double Tongthu
-    {
-        get => _tongthu;
-        set => SetProperty(ref _tongthu, value);
-    }
-
-    private double _tongchi;
-    public double Tongchi
-    {
-        get => _tongchi;
-        set => SetProperty(ref _tongchi, value);
-    }
-
-    private ObservableCollection<GiaoDichDisplay> _danhSachGiaoDich;
-    public ObservableCollection<GiaoDichDisplay> DanhSachGiaoDich
-    {
-        get => _danhSachGiaoDich;
-        set => SetProperty(ref _danhSachGiaoDich, value);
-    }
-
+    // 🔥 computed property giữ nguyên
     public Color MauNhanThang => IsTheoThang ? Color.FromArgb("#38D5BE") : Colors.White;
     public Color MauChuThang => IsTheoThang ? Colors.White : Color.FromArgb("#64748B");
     public Color MauNhanNam => !IsTheoThang ? Color.FromArgb("#38D5BE") : Colors.White;
@@ -83,11 +37,19 @@ public partial class ChartViewModel : MainViewModel
     public ChartViewModel()
     {
         _db = new KetnoiDB();
-        Y = new Axis[] { new Axis { LabelsPaint = new SolidColorPaint(SKColors.DimGray), TextSize = 14, MinLimit = 0 } };
+        Y = new Axis[]
+        {
+            new Axis
+            {
+                LabelsPaint = new SolidColorPaint(SKColors.DimGray),
+                TextSize = 14,
+                MinLimit = 0
+            }
+        };
         LoadData();
     }
 
-   
+    // 🔥 Command giữ nguyên
     [RelayCommand]
     private void ChonTheoThang()
     {
@@ -104,7 +66,6 @@ public partial class ChartViewModel : MainViewModel
         LoadData();
     }
 
-    // Hàm gọi giao diện cập nhật màu nút
     private void CapNhatUI()
     {
         OnPropertyChanged(nameof(MauNhanThang));
@@ -113,7 +74,6 @@ public partial class ChartViewModel : MainViewModel
         OnPropertyChanged(nameof(MauChuNam));
     }
 
-    
     public void LoadData()
     {
         int userId = Preferences.Default.Get("UserID", 1);
@@ -131,7 +91,10 @@ public partial class ChartViewModel : MainViewModel
         {
             if (DateTime.TryParse(gd.Ngay, out DateTime ngayGd))
             {
-                bool hopLe = IsTheoThang ? (ngayGd.Month == now.Month && ngayGd.Year == now.Year) : (ngayGd.Year == now.Year);
+                bool hopLe = IsTheoThang
+                    ? (ngayGd.Month == now.Month && ngayGd.Year == now.Year)
+                    : (ngayGd.Year == now.Year);
+
                 if (hopLe)
                 {
                     filteredGiaoDich.Add(gd);
@@ -143,7 +106,10 @@ public partial class ChartViewModel : MainViewModel
 
         foreach (var item in allData)
         {
-            bool hopLe = IsTheoThang ? (item.Ngay.Month == now.Month && item.Ngay.Year == now.Year) : (item.Ngay.Year == now.Year);
+            bool hopLe = IsTheoThang
+                ? (item.Ngay.Month == now.Month && item.Ngay.Year == now.Year)
+                : (item.Ngay.Year == now.Year);
+
             if (hopLe) filteredData.Add(item);
         }
 
@@ -157,7 +123,7 @@ public partial class ChartViewModel : MainViewModel
             {
                 Labels = IsTheoThang
                     ? new string[] { "Tuần 1", "Tuần 2", "Tuần 3", "Tuần 4" }
-                    : new string[] { "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12" },
+                    : new string[] { "T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12" },
                 LabelsPaint = new SolidColorPaint(SKColors.DimGray),
                 TextSize = 14
             }
@@ -174,21 +140,19 @@ public partial class ChartViewModel : MainViewModel
 
             if (!dictCol.ContainsKey(item.TenDanhMuc)) dictCol[item.TenDanhMuc] = new double[soCotX];
 
-            int indexCot = 0;
-            if (IsTheoThang)
-            {
-                indexCot = (item.Ngay.Day - 1) / 7;
-                if (indexCot > 3) indexCot = 3;
-            }
-            else
-            {
-                indexCot = item.Ngay.Month - 1;
-            }
+            int indexCot = IsTheoThang
+                ? Math.Min((item.Ngay.Day - 1) / 7, 3)
+                : item.Ngay.Month - 1;
 
             dictCol[item.TenDanhMuc][indexCot] += item.SoTien;
         }
 
-        SKColor[] mangMau = { SKColors.LimeGreen, SKColors.Orange, SKColors.RoyalBlue, SKColors.MediumPurple, SKColors.Tomato, SKColors.DeepPink };
+        SKColor[] mangMau =
+        {
+            SKColors.LimeGreen, SKColors.Orange, SKColors.RoyalBlue,
+            SKColors.MediumPurple, SKColors.Tomato, SKColors.DeepPink
+        };
+
         var newPieSeries = new ObservableCollection<ISeries>();
         var newColSeries = new ObservableCollection<ISeries>();
         int colorIndex = 0;
@@ -214,6 +178,7 @@ public partial class ChartViewModel : MainViewModel
                 Rx = 4,
                 Ry = 4
             });
+
             colorIndex++;
         }
 
